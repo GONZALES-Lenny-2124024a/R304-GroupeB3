@@ -33,9 +33,9 @@ public class Game<T extends Character> {
      */
     public void showCharactersDescription() {
         System.out.println("Choose your class from : " + '\n');
-        System.out.println(new Archer("Character1"));
-        System.out.println(new Mage("Character1"));
-        System.out.println(new Healer("Character1"));
+        System.out.println(new Archer("Player1"));
+        System.out.println(new Mage("Player1"));
+        System.out.println(new Healer("Player1"));
     }
 
     /**
@@ -43,9 +43,9 @@ public class Game<T extends Character> {
      */
     public void chooseFirstCharacter() {
         switch(input.nextLine().toLowerCase()) {
-            case "archer" -> playerTeam.addCharacter((T) new Archer("Character1"));
-            case "healer" ->playerTeam.addCharacter((T) new Healer("Character1"));
-            default -> playerTeam.addCharacter((T) new Mage("Character1"));
+            case "archer" -> playerTeam.addCharacter((T) new Archer("Player1"));
+            case "healer" ->playerTeam.addCharacter((T) new Healer("Player1"));
+            default -> playerTeam.addCharacter((T) new Mage("Player1"));
         }
     }
 
