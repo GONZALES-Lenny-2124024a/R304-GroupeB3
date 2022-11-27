@@ -106,6 +106,20 @@ public class Game<T extends Character> {
     }
 
     /**
+     * Verify if the user have enough gold and it takes away the gold
+     * @param characterEnum
+     * @return true if the character have enough gold, else false
+     */
+    public boolean buyCharacter(Market characterEnum) {
+        if (playerTeam.getGold() < characterEnum.getPrice()) {
+            System.out.println("You don't have enough !");
+            return false;
+        }
+        playerTeam.setGold(playerTeam.getGold() - characterEnum.getPrice());
+        return true;
+    }
+
+    /**
      * Allows the user to buy new characters
      */
     public void marketMode() {
@@ -114,15 +128,15 @@ public class Game<T extends Character> {
 
         switch (input.nextLine().toLowerCase()) {
             case "archer":
-                playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1)));
+                if(buyCharacter(Market.ARCHER)) { playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1))); }
                 break;
 
             case "mage":
-                playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1)));
+                if(buyCharacter(Market.MAGE)) { playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1))); }
                 break;
 
             case "healer":
-                playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1)));
+                if(buyCharacter(Market.HEALER)) { playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1))); }
                 break;
         }
     }
