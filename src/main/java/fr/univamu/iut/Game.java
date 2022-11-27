@@ -84,15 +84,19 @@ public class Game<T extends Character> {
      * Supports the fight between player team and enemy team
      * @throws InterruptedException
      */
-    public void fightMode() {
+    public void fightMode() throws InterruptedException {
         creationEnemyTeam();
+        TeamFight fight = new TeamFight(playerTeam, enemyTeam);
+        if (fight.run().equals("defeat")) { // If the player loses, the game stops
+            endGame = true;
+        }
     }
 
     /**
      * The game menu
      * @throws InterruptedException
      */
-    public void gameMenu() {
+    public void gameMenu() throws InterruptedException {
         endGame = false;
         while(!endGame) {
             System.out.println("Fight | Profile | Quit");  // Presents the game's pages
@@ -104,7 +108,7 @@ public class Game<T extends Character> {
         }
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
         introduction();
         gameMenu();
     }
