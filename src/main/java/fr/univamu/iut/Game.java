@@ -52,7 +52,23 @@ public class Game<T extends Character> {
         chooseFirstCharacter();
     }
 
+    /**
+     * The game menu
+     * @throws InterruptedException
+     */
+    public void gameMenu() {
+        endGame = false;
+        while(!endGame) {
+            System.out.println("Profile | Quit");  // Presents the game's pages
+            switch(input.nextLine().toLowerCase()) {
+                case "profile" -> System.out.println(playerTeam);    // Show the player team
+                case "quit" -> endGame = true;
+            }
+        }
+    }
+
     public void run() {
         introduction();
+        gameMenu();
     }
 }
