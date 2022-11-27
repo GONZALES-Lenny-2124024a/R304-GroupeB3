@@ -1,5 +1,7 @@
 package fr.univamu.iut;
 
+import fr.univamu.iut.market.Market;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -93,15 +95,34 @@ public class Game<T extends Character> {
     }
 
     /**
+     * Presents the market's items
+     */
+    public static void presentationMarket() {
+        StringBuilder output = new StringBuilder();
+        for (Market item : Market.values()) {
+            output.append(item + " : " + item.getPrice() + '\n');
+        }
+        System.out.println(output);
+    }
+
+    /**
+     * Allows the user to buy new characters
+     */
+    public void marketMode() {
+        presentationMarket();
+    }
+
+    /**
      * The game menu
      * @throws InterruptedException
      */
     public void gameMenu() throws InterruptedException {
         endGame = false;
         while(!endGame) {
-            System.out.println("Fight | Profile | Quit");  // Presents the game's pages
+            System.out.println("Fight | Market | Profile | Quit");  // Presents the game's pages
             switch(input.nextLine().toLowerCase()) {
                 case "fight" -> fightMode();
+                case "market" -> marketMode();
                 case "profile" -> System.out.println(playerTeam);    // Show the player team
                 case "quit" -> endGame = true;
             }
