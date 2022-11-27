@@ -6,12 +6,16 @@ import java.util.Scanner;
 public class Game<T extends Character> {
 
     Scanner input;
+    CharactersTeam<T> enemyTeam;
     CharactersTeam<T> playerTeam;
     boolean endGame;
+    Random rand;
 
     public Game() {
         input = new Scanner(System.in);
         endGame = false;
+        rand = new Random();
+        enemyTeam = new CharactersTeam<>("EnemyTeam");
     }
 
     /**
@@ -53,14 +57,47 @@ public class Game<T extends Character> {
     }
 
     /**
+     * Create the enemy team for the fight
+     */
+    public void creationEnemyTeam() {
+        Character enemy = null;
+        Character player;
+        String name;
+        for (int nbPlayer = 0; nbPlayer < playerTeam.getSize(); ++nbPlayer) {   // The enemy team have the same number as the player team
+            name = "Enemy" + (nbPlayer + 1);
+            switch (rand.nextInt(3)) {
+                case 0 -> enemy = new Archer(name);
+                case 1 -> enemy = new Mage(name);
+                case 2 -> enemy = new Healer(name);
+            }
+            player = playerTeam.getSpecificCharacter(nbPlayer); // Get a player in the player team
+
+            // Coefficient between 0.3 and 1.15 for the attributs (Damage and Defense)
+            enemy.setDamage((int) (player.getDamage() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
+            enemy.setDefence((int) (player.getDefence() * rand.nextDouble() * (1.15 - 0.3) + 0.3));
+
+            enemyTeam.addCharacter((T) enemy);
+        }
+    }
+
+    /**
+     * Supports the fight between player team and enemy team
+     * @throws InterruptedException
+     */
+    public void fightMode() {
+        creationEnemyTeam();
+    }
+
+    /**
      * The game menu
      * @throws InterruptedException
      */
     public void gameMenu() {
         endGame = false;
         while(!endGame) {
-            System.out.println("Profile | Quit");  // Presents the game's pages
+            System.out.println("Fight | Profile | Quit");  // Presents the game's pages
             switch(input.nextLine().toLowerCase()) {
+                case "fight" -> fightMode();
                 case "profile" -> System.out.println(playerTeam);    // Show the player team
                 case "quit" -> endGame = true;
             }
