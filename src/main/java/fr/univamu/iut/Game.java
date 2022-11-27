@@ -110,6 +110,21 @@ public class Game<T extends Character> {
      */
     public void marketMode() {
         presentationMarket();
+        System.out.println("Enter the name of the character that you want to buy :");
+
+        switch (input.nextLine().toLowerCase()) {
+            case "archer":
+                playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1)));
+                break;
+
+            case "mage":
+                playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1)));
+                break;
+
+            case "healer":
+                playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1)));
+                break;
+        }
     }
 
     /**
