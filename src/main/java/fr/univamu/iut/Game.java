@@ -112,7 +112,7 @@ public class Game<T extends Character> {
      */
     public boolean buyCharacter(Market characterEnum) {
         if (playerTeam.getGold() < characterEnum.getPrice()) {
-            System.out.println("You don't have enough !");
+            System.out.println("You don't have enough gold !");
             return false;
         }
         playerTeam.setGold(playerTeam.getGold() - characterEnum.getPrice());

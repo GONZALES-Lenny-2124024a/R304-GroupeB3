@@ -19,12 +19,12 @@ public class Mage extends Character implements Distance, Fly {
 
     @Override
     public String fly() {
-        return "Vole au-dessus de la zone !";
+        return "Fly over the area !";
     }
 
     @Override
     public String distance() {
-        return "Attaque à distance !";
+        return "Ranged attack !";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Mage extends Character implements Distance, Fly {
         pEnemy.setLife(getLife() - getDamage());
 
         for (int i = 0; i < 5; ++i) {   // Make a passive attack for 5 seconds
-            System.out.println(getName() + " a infligé 1 dégâts à " + pEnemy.getName() + " !");
+            System.out.println(getName() + " -> " + pEnemy.getName() + " (1 damage) !");
             pEnemy.setLife(pEnemy.getLife() - 1);
             Thread.sleep(1);
         }
@@ -42,6 +42,6 @@ public class Mage extends Character implements Distance, Fly {
     public String toString() {
         return  "Mage" + '\n' +
                 super.toString() + '\n' +
-                "Compétences : " + fly() + " | " + distance() + '\n';
+                "Skills : " + fly() + " | " + distance() + '\n';
     }
 }

@@ -53,7 +53,7 @@ public class CharactersTeam<T extends Character> {
     @Override
     public String toString() {
         return  getName() + '\n' +
-                "characters : " + '\n' + characters + '\n' +
+                "Characters : " + '\n' + characters + '\n' +
                 "Gold : " + getGold();
     }
 }

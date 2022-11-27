@@ -36,18 +36,18 @@ public class Healer extends Character implements Distance, Fly {
 
     @Override
     public String fly() {
-        return "Vole au-dessus de la zone pour se soigner !";
+        return "He flies over the area to heal himself !";
     }
 
     @Override
     public String distance() {
-        return "Attaque à distance !";
+        return "Ranged attack !";
     }
 
     @Override
     public String toString() {
         return  "Healer" + '\n' +
                 super.toString() + '\n' +
-                "Compétences : " + fly() + " | " + distance() + '\n';
+                "Skills : " + fly() + " | " + distance() + '\n';
     }
 }

@@ -16,7 +16,7 @@ public class Archer extends Character implements Distance {
 
     @Override
     public String distance() {
-        return "Il lance des flèches à distance !";
+        return "He shoots arrows from a distance !";
     }
 
     public void specialAttack(Character pEnemy) {
@@ -28,6 +28,6 @@ public class Archer extends Character implements Distance {
     public String toString() {
         return  "Archer" + '\n' +
                 super.toString() + '\n' +
-                "Compétences : " + distance() + '\n';
+                "Skills : " + distance() + '\n';
     }
 }
