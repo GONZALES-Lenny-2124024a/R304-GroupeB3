@@ -21,6 +21,7 @@ public class Archer extends Character implements Distance {
 
     @Override
     public int specialAttack(Character pEnemy) {
+        pEnemy.setLife((getLife() + getDefence()) - (2*getDamage()));
         return (2 * getDamage());
     }
 
