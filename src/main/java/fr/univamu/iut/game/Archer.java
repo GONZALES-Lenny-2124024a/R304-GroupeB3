@@ -19,9 +19,9 @@ public class Archer extends Character implements Distance {
         return "He shoots arrows from a distance !";
     }
 
-    public void specialAttack(Character pEnemy) {
-        int attackDamage = 2* getDamage();  //The archer attack with 2 arrows
-        pEnemy.setLife(pEnemy.getLife() - attackDamage);
+    @Override
+    public int specialAttack(Character pEnemy) {
+        return (2 * getDamage());
     }
 
     @Override

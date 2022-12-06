@@ -2,15 +2,17 @@ package fr.univamu.iut.game;
 
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 
-import java.util.Iterator;
+import java.util.*;
 
 public class TeamFight<T extends Character> {
     private CharactersTeam<T> playerTeam;
     private CharactersTeam<T> enemyTeam;
+    private List<T> charactersList;
 
     public TeamFight(CharactersTeam<T> playerTeam, CharactersTeam<T> enemyTeam) {
         this.playerTeam = playerTeam;
         this.enemyTeam = enemyTeam;
+        charactersList = playerTeam.getCharacters();
     }
 
     /**
@@ -79,6 +81,33 @@ public class TeamFight<T extends Character> {
     }
 
     /**
+     * Sort the list
+     */
+    public void rankingSort() {
+        int sizeList = charactersList.size();
+        T playerSwap;
+        for(int x = 0; x < sizeList; x++) {
+            for (int y = 1; y < (sizeList - x); y++) {
+                if (charactersList.get(y - 1).getDamageInGame() < charactersList.get(y).getDamageInGame()) {
+                    //swap elements
+                    playerSwap = charactersList.get(y - 1);
+                    charactersList.set((y - 1), charactersList.get(y));
+                    charactersList.set(y, playerSwap);
+                }
+            }
+        }
+    }
+
+    /**
+     * Sort a list and print it
+     */
+    public void ranking() {
+        rankingSort();
+        System.out.println("\nDamage ranking :");
+        charactersList.forEach(character -> System.out.println(character.getName() + " : " + character.getDamageInGame()));
+    }
+
+    /**
      * Supports the fight between two teams
      * @return
      * @throws InterruptedException
@@ -89,6 +118,7 @@ public class TeamFight<T extends Character> {
             if(attack(playerTeam,enemyTeam)) {
                 playerTeam.getCharacters().forEach((T p) -> p.setLife(100));
                 giveReward();
+                ranking();
                 return "win";
             }
             // Enemy team attack

@@ -6,6 +6,7 @@ abstract class Character {
     private int xp;
     private int xpNecessary;
     private int damage;
+    private int damageInGame;
     private int defence;
     private int life;
 
@@ -15,6 +16,7 @@ abstract class Character {
         xp = 0;
         xpNecessary = 10;
         life = 100;
+        damageInGame = 0;
     }
 
     public String getName() {
@@ -83,6 +85,14 @@ abstract class Character {
         this.damage = damage;
     }
 
+    public int getDamageInGame() {
+        return damageInGame;
+    }
+
+    public void setDamageInGame(int damageInGame) {
+        this.damageInGame = damageInGame;
+    }
+
     public int getDefence() {
         return defence;
     }
@@ -102,24 +112,28 @@ abstract class Character {
     /**
      * This character attack another character
      * @param pEnemy
+     * @return the damage
      * @throws InterruptedException
      */
-    public void attack(Character pEnemy) throws InterruptedException {
-        int attackDamage = getDamage();
+    public int attack(Character pEnemy) throws InterruptedException {
+        int attackDamage = (pEnemy.getLife() + pEnemy.getDefence()) - getDamage();
         double rand = Math.random();
+
         if(rand <= 0.05) {  // 5% chance of making a critical attack
-            pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - (3 * attackDamage));
-            System.out.println(getName() + " -> " + pEnemy.getName() + " ("+ ((3 * attackDamage) - pEnemy.getDefence()) + ") critical attack !");
+            attackDamage *= 3;
+            pEnemy.setLife(attackDamage);
+            System.out.println(getName() + " -> " + pEnemy.getName() + " ("+ getDamage()*3 + ") critical attack !");
         } else if (rand > 0.05 && rand <= 0.15) { // 10% chance of making a special attack
-            specialAttack(pEnemy);
-            System.out.println(getName() + " performed his special attack !");
+            System.out.println(getName() + " performed his special attack ! (" + specialAttack(pEnemy) + ')');
         } else {    // Default attack
-            pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - attackDamage);
-            System.out.println(getName() + " -> " + pEnemy.getName() + " (" + (attackDamage - pEnemy.getDefence()) + ')');
+            pEnemy.setLife(attackDamage);
+            System.out.println(getName() + " -> " + pEnemy.getName() + " (" + getDamage() + ')');
         }
+        setDamageInGame(getDamageInGame() + attackDamage);
+        return attackDamage;
     }
 
-    abstract void specialAttack(Character pEnemy) throws InterruptedException;
+    abstract int specialAttack(Character pEnemy) throws InterruptedException;
 
     @Override
     public String toString() {

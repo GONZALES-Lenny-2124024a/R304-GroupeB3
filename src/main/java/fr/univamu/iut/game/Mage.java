@@ -28,14 +28,16 @@ public class Mage extends Character implements Distance, Fly {
     }
 
     @Override
-    public void specialAttack(Character pEnemy) throws InterruptedException {
-        pEnemy.setLife(getLife() - getDamage());
+    public int specialAttack(Character pEnemy) throws InterruptedException {
+        int attackDamage = (pEnemy.getLife() + pEnemy.getDefence()) - getDamage();
+        pEnemy.setLife(attackDamage);
 
         for (int i = 0; i < 5; ++i) {   // Make a passive attack for 5 seconds
-            System.out.println(getName() + " -> " + pEnemy.getName() + " (1 damage) !");
+            System.out.println(getName() + " -> " + pEnemy.getName() + " (1) !");
             pEnemy.setLife(pEnemy.getLife() - 1);
-            Thread.sleep(1);
+            Thread.sleep(1000);
         }
+        return (getDamage() + 5);
     }
 
     @Override

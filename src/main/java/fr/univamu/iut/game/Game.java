@@ -26,6 +26,7 @@ public class Game<T extends Character> {
     public void teamCreation() {
         System.out.print("Enter the name of your team : ");
         playerTeam = new CharactersTeam<>(input.nextLine());
+        playerTeam.setGold(1000);
     }
 
     /**
@@ -148,7 +149,7 @@ public class Game<T extends Character> {
     public void gameMenu() throws InterruptedException {
         endGame = false;
         while(!endGame) {
-            System.out.println("Fight | Market | Profile | Quit");  // Presents the game's pages
+            System.out.println("\nFight | Market | Profile | Quit");  // Presents the game's pages
             switch(input.nextLine().toLowerCase()) {
                 case "fight" -> fightMode();
                 case "market" -> marketMode();

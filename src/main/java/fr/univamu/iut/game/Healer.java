@@ -30,8 +30,9 @@ public class Healer extends Character implements Distance, Fly {
     }
 
     @Override
-    void specialAttack(Character pEnemy) {
+    public int specialAttack(Character pEnemy) {
         setLife(getLife() + getHeal());
+        return 0;
     }   // He heals himself
 
     @Override
