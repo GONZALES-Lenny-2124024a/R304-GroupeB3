@@ -6,7 +6,7 @@ abstract class Character {
     private int xp;
     private int xpNecessary;
     private int damage;
-    private int damageInGame;
+    private int damageInFight;
     private int defence;
     private int life;
 
@@ -16,7 +16,7 @@ abstract class Character {
         xp = 0;
         xpNecessary = 10;
         life = 100;
-        damageInGame = 0;
+        damageInFight = 0;
     }
 
     public String getName() {
@@ -85,12 +85,12 @@ abstract class Character {
         this.damage = damage;
     }
 
-    public int getDamageInGame() {
-        return damageInGame;
+    public int getDamageInFight() {
+        return damageInFight;
     }
 
-    public void setDamageInGame(int damageInGame) {
-        this.damageInGame = damageInGame;
+    public void setDamageInFight(int damageInFight) {
+        this.damageInFight = damageInFight;
     }
 
     public int getDefence() {
@@ -129,7 +129,7 @@ abstract class Character {
             pEnemy.setLife(attackDamage);
             System.out.println(getName() + " -> " + pEnemy.getName() + " (" + getDamage() + ')');
         }
-        setDamageInGame(getDamageInGame() + attackDamage);
+        setDamageInFight(getDamageInFight() + attackDamage);
         return attackDamage;
     }
 

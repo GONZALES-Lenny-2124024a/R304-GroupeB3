@@ -50,6 +50,12 @@ public class MageTest {
     }
 
     @Test
+    public void shouldGetDamageInFight() {
+        Mage p = new Mage("Lenny");
+        assertEquals(p.getDamageInFight(), 0);
+    }
+
+    @Test
     public void shouldSetName() {
         Mage p = new Mage("Lenny");
         p.setName("otherName");
@@ -96,5 +102,12 @@ public class MageTest {
         Mage p = new Mage("Lenny");
         p.setLife(200);
         assertEquals(p.getLife(), 200);
+    }
+
+    @Test
+    public void shouldSetDamageInFight() {
+        Mage p = new Mage("Lenny");
+        p.setDamageInFight(200);
+        assertEquals(p.getDamageInFight(), 200);
     }
 }

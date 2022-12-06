@@ -56,6 +56,12 @@ public class HealerTest {
     }
 
     @Test
+    public void shouldGetDamageInFight() {
+        Healer p = new Healer("Lenny");
+        assertEquals(p.getDamageInFight(), 0);
+    }
+
+    @Test
     public void shouldSetName() {
         Healer p = new Healer("Lenny");
         p.setName("otherName");
@@ -109,5 +115,12 @@ public class HealerTest {
         Healer p = new Healer("Lenny");
         p.setHeal(100);
         assertEquals(p.getHeal(), 100);
+    }
+
+    @Test
+    public void shouldSetDamageInFight() {
+        Healer p = new Healer("Lenny");
+        p.setDamageInFight(200);
+        assertEquals(p.getDamageInFight(), 200);
     }
 }

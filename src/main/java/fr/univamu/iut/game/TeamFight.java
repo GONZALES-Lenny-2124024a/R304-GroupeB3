@@ -81,14 +81,14 @@ public class TeamFight<T extends Character> {
     }
 
     /**
-     * Sort the list
+     * Sort the list with the Bubble sort
      */
-    public void rankingSort() {
+    public void rankingBubbleSort() {
         int sizeList = charactersList.size();
         T playerSwap;
         for(int x = 0; x < sizeList; x++) {
             for (int y = 1; y < (sizeList - x); y++) {
-                if (charactersList.get(y - 1).getDamageInGame() < charactersList.get(y).getDamageInGame()) {
+                if (charactersList.get(y - 1).getDamageInFight() < charactersList.get(y).getDamageInFight()) {
                     //swap elements
                     playerSwap = charactersList.get(y - 1);
                     charactersList.set((y - 1), charactersList.get(y));
@@ -102,9 +102,9 @@ public class TeamFight<T extends Character> {
      * Sort a list and print it
      */
     public void ranking() {
-        rankingSort();
+        rankingBubbleSort();
         System.out.println("\nDamage ranking :");
-        charactersList.forEach(character -> System.out.println(character.getName() + " : " + character.getDamageInGame()));
+        charactersList.forEach(character -> System.out.println(character.getName() + " : " + character.getDamageInFight()));
     }
 
     /**
@@ -119,6 +119,7 @@ public class TeamFight<T extends Character> {
                 playerTeam.getCharacters().forEach((T p) -> p.setLife(100));
                 giveReward();
                 ranking();
+                charactersList.forEach(character -> character.setDamageInFight(0));
                 return "win";
             }
             // Enemy team attack

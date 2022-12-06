@@ -35,7 +35,7 @@ public class Mage extends Character implements Distance, Fly {
         for (int i = 0; i < 5; ++i) {   // Make a passive attack for 5 seconds
             System.out.println(getName() + " -> " + pEnemy.getName() + " (1) !");
             pEnemy.setLife(pEnemy.getLife() - 1);
-            Thread.sleep(1000);
+            Thread.sleep(250);
         }
         return (getDamage() + 5);
     }

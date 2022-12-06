@@ -50,6 +50,12 @@ public class ArcherTest {
     }
 
     @Test
+    public void shouldGetDamageInFight() {
+        Archer p = new Archer("Lenny");
+        assertEquals(p.getDamageInFight(), 0);
+    }
+
+    @Test
     public void shouldSetName() {
         Archer p = new Archer("Lenny");
         p.setName("otherName");
@@ -96,5 +102,12 @@ public class ArcherTest {
         Archer p = new Archer("Lenny");
         p.setLife(200);
         assertEquals(p.getLife(), 200);
+    }
+
+    @Test
+    public void shouldSetDamageInFight() {
+        Archer p = new Archer("Lenny");
+        p.setDamageInFight(200);
+        assertEquals(p.getDamageInFight(), 200);
     }
 }

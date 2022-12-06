@@ -26,7 +26,6 @@ public class Game<T extends Character> {
     public void teamCreation() {
         System.out.print("Enter the name of your team : ");
         playerTeam = new CharactersTeam<>(input.nextLine());
-        playerTeam.setGold(1000);
     }
 
     /**
