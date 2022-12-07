@@ -1,8 +1,9 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.game.Archer;
-import fr.univamu.iut.game.CharactersTeam;
-import fr.univamu.iut.game.Mage;
+import fr.univamu.iut.game.characters.Archer;
+import fr.univamu.iut.game.characters.CharactersTeam;
+import fr.univamu.iut.game.characters.Mage;
+import fr.univamu.iut.game.characters.Character;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class CharacterTeamTest {
     @Test
     public void shouldGetCharacters() {
         Mage p = new Mage("Lenny");
-        List<fr.univamu.iut.game.Character> listCharacters = new ArrayList<>();
+        List<Character> listCharacters = new ArrayList<>();
         listCharacters.add(p);
 
         CharactersTeam team = new CharactersTeam("LennyTeam");
@@ -84,7 +85,7 @@ public class CharacterTeamTest {
     @Test
     public void shouldSetCharacters() {
         Mage p = new Mage("Lenny");
-        List<fr.univamu.iut.game.Character> listCharacters = new ArrayList<>();
+        List<Character> listCharacters = new ArrayList<>();
         listCharacters.add(p);
 
         CharactersTeam team = new CharactersTeam("LennyTeam");

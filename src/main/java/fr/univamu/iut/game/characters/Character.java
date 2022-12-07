@@ -1,6 +1,6 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
-abstract class Character {
+public abstract class Character {
     private String name;
     private int level;
     private int xp;
@@ -57,7 +57,7 @@ abstract class Character {
 
     /**
      * Set the xp and check if the character can level up
-     * @param xp
+     * @param xp int
      */
     public void setXp(int xp) {
         this.xp = xp;

@@ -1,8 +1,8 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.game.CharactersTeam;
-import fr.univamu.iut.game.Mage;
-import fr.univamu.iut.game.TeamFight;
+import fr.univamu.iut.game.characters.CharactersTeam;
+import fr.univamu.iut.game.characters.Mage;
+import fr.univamu.iut.game.fight.TeamFight;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

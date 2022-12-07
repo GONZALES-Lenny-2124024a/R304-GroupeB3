@@ -1,6 +1,6 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.game.Mage;
+import fr.univamu.iut.game.characters.Mage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

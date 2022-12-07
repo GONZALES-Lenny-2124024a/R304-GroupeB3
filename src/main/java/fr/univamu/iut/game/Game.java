@@ -1,5 +1,8 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.game.characters.*;
+import fr.univamu.iut.game.characters.Character;
+import fr.univamu.iut.game.fight.TeamFight;
 import fr.univamu.iut.game.market.Market;
 
 import java.util.Random;

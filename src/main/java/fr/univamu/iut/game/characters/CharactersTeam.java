@@ -1,6 +1,4 @@
-package fr.univamu.iut.game;
-
-import fr.univamu.iut.game.characters.Character;
+package fr.univamu.iut.game.characters;
 
 import java.util.ArrayList;
 import java.util.List;
