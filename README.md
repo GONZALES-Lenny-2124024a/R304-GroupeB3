@@ -23,6 +23,18 @@ d’une convention de nommage, commentaires, etc.) et à l’architecture des r�
 Votre application doit être évolutive, modulaire et professionnelle (robuste, fiable et intégralement
 fonctionnelle).
 
+## Présentation de l'application
+
+Notre applcation est un jeu où l'utilisateur créer sa propre équipe de personnages parmi :
+    - Mage
+    - Archer
+    - Healer
+
+L'utilisateur peut combattre une équipe adverse généré automatiquement par rapport à l'équipe de l'utilisateur.
+Lors d'un combat, l'utilisateur peut perdre un ou plusieurs de ses personnages, mais lorsque l'utilisateur gagne, chaque personnage de son équipe gagne de l'expérience et de l'argent (gold).
+Avec cet argent, il peut acheter d'autres personnages.
+
+Pour finir, lorsque l'utilisateur a perdu un combat, la partie est finie puisqu'il ne possède plus aucun personnage.
 
 ## Lancement de l'application
 
