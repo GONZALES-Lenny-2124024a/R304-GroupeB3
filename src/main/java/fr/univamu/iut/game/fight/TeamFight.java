@@ -1,5 +1,6 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 
 import java.util.*;
