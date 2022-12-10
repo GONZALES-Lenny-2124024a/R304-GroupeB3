@@ -3,6 +3,9 @@ package fr.univamu.iut.game.characters;
 import fr.univamu.iut.game.attributs.Distance;
 import fr.univamu.iut.game.attributs.Fly;
 
+/**
+ * It's a type of character that can heal itself.
+ */
 public class Healer extends Character implements Distance, Fly {
     private int heal;
 

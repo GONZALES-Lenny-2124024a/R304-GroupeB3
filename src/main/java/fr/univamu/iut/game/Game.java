@@ -8,6 +8,10 @@ import fr.univamu.iut.game.market.Market;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Supports a game
+ * @param <T> accepts types of character (Mage, Healer, Archer)
+ */
 public class Game<T extends Character> {
 
     Scanner input;
@@ -77,7 +81,7 @@ public class Game<T extends Character> {
             }
             player = playerTeam.getSpecificCharacter(nbPlayer); // Get a player in the player team
 
-            // Coefficient between 0.3 and 1.15 for the attributs (Damage and Defense)
+            // Coefficient between 0.3 and 1.15 for the attributes (Damage and Defense)
             enemy.setDamage((int) (player.getDamage() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
             enemy.setDefence((int) (player.getDefence() * rand.nextDouble() * (1.15 - 0.3) + 0.3));
 
@@ -87,7 +91,7 @@ public class Game<T extends Character> {
 
     /**
      * Supports the fight between player team and enemy team
-     * @throws InterruptedException
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void fightMode() throws InterruptedException {
         creationEnemyTeam();
@@ -109,8 +113,8 @@ public class Game<T extends Character> {
     }
 
     /**
-     * Verify if the user have enough gold and it takes away the gold
-     * @param characterEnum
+     * Verify if the user have enough gold, it takes away the gold
+     * @param characterEnum Market which contains all the characters that the user can buy
      * @return true if the character have enough gold, else false
      */
     public boolean buyCharacter(Market characterEnum) {
@@ -146,7 +150,7 @@ public class Game<T extends Character> {
 
     /**
      * The game menu
-     * @throws InterruptedException
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void gameMenu() throws InterruptedException {
         endGame = false;

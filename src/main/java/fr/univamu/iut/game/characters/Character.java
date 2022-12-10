@@ -1,5 +1,8 @@
 package fr.univamu.iut.game.characters;
 
+/**
+ * Abstract method that has all the basic methods of a character
+ */
 public abstract class Character {
     private String name;
     private int level;
@@ -44,7 +47,7 @@ public abstract class Character {
     }
 
     /**
-     * Increase atrtibuts (damage, defence) of the character
+     * Increase attributes (damage, defence) of the character
      */
     public void increaseStats() {
         setDamage((int) (getDamage() * 1.2));
@@ -111,9 +114,8 @@ public abstract class Character {
 
     /**
      * This character attack another character
-     * @param pEnemy
-     * @return the damage
-     * @throws InterruptedException
+     * @param pEnemy enemy character
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void attack(Character pEnemy, double randomValue) throws InterruptedException {
         int damageAttack = getDamage();

@@ -3,6 +3,10 @@ package fr.univamu.iut.game.characters;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Team of characters
+ * @param <T> accepts types of character (Mage, Healer, Archer)
+ */
 public class CharactersTeam<T extends Character> {
     private String name;
     private List<T> characters;

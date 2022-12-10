@@ -6,6 +6,10 @@ import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 
 import java.util.*;
 
+/**
+ * Supports the fight between two characters team
+ * @param <T> accepts types of character (Mage, Healer, Archer)
+ */
 public class TeamFight<T extends Character> {
     private CharactersTeam<T> playerTeam;
     private CharactersTeam<T> enemyTeam;
@@ -20,13 +24,12 @@ public class TeamFight<T extends Character> {
     /**
      * Return the level of the reward
      */
-    public int getRewardLevel() {
-        double randValue = Math.random();
+    public int getRewardLevel(double randValue) {
         if (randValue <= 0.03) { // 3% chance to have a legendary reward
             return TeamFightRewardLevel.LEGENDARY.getReward();
-        } else if ((randValue <= 0.08) && (randValue > 0.03)) { // 5% chance to have a epic reward
+        } else if (randValue <= 0.08) { // 5% chance to have an epic reward
             return TeamFightRewardLevel.EPIC.getReward();
-        } else if ((randValue <= 0.3) && (randValue > 0.08)) { // 22% chance to have a rare reward
+        } else if (randValue <= 0.3) { // 22% chance to have a rare reward
             return TeamFightRewardLevel.RARE.getReward();
         } else {    // 70% chance to have a common reward
             return TeamFightRewardLevel.COMMON.getReward();
@@ -37,11 +40,12 @@ public class TeamFight<T extends Character> {
      * Give a reward to the player (gold, xp)
      */
     public void giveReward() {
-        int rewardLevel = getRewardLevel();
+        int rewardLevel = getRewardLevel(Math.random());
 
         Iterator<T> it = playerTeam.getCharacters().iterator();
+        T character;
         while(it.hasNext()) {   // Give xp to characters
-            T character = (T) it.next();
+            character = (T) it.next();
             character.setXp(character.getXp() + rewardLevel);
         }
         playerTeam.setGold(playerTeam.getGold() + rewardLevel); // Give gold to the user
@@ -50,19 +54,19 @@ public class TeamFight<T extends Character> {
 
     /**
      * Get a random character from a team
-     * @param team
+     * @param team (characters team)
      * @return a character
      */
     public T getRandomCharacter(CharactersTeam<T> team) {
-        return team.getCharacters().get((int)Math.random()*team.getCharacters().size());
+        return team.getCharacters().get((int)(Math.random()*team.getCharacters().size()));
     }
 
     /**
      * A team (attackingTeam) attack another team (victimTeam)
-     * @param attackingTeam
-     * @param victimTeam
-     * @return
-     * @throws InterruptedException
+     * @param attackingTeam (characters team which attack)
+     * @param victimTeam (characters team which attack)
+     * @return if the fight is over or not
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public boolean attack(CharactersTeam<T> attackingTeam, CharactersTeam<T> victimTeam) throws InterruptedException {
         for (T attackingCharacter : attackingTeam.getCharacters()) {
@@ -73,7 +77,7 @@ public class TeamFight<T extends Character> {
                 victimTeam.delCharacter(victimCharacter);
                 System.out.println(victimCharacter.getName() + " was killed !");
 
-                if(victimTeam.getSize() == 0) { // Verify if there is still a opponent
+                if(victimTeam.getSize() == 0) { // Verify if there is still an opponent
                     System.out.println(attackingTeam.getName() + " won !");
                     return true;    // The fight is over
                 }
@@ -111,8 +115,8 @@ public class TeamFight<T extends Character> {
 
     /**
      * Supports the fight between two teams
-     * @return
-     * @throws InterruptedException
+     * @return if the user won or not
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public String run() throws InterruptedException {
         while (true) {

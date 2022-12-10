@@ -3,6 +3,9 @@ package fr.univamu.iut.game.characters;
 import fr.univamu.iut.game.attributs.Distance;
 import fr.univamu.iut.game.attributs.Fly;
 
+/**
+ * This is an average character type in terms of damage and protection.
+ */
 public class Mage extends Character implements Distance, Fly {
 
     public Mage(String name) {
