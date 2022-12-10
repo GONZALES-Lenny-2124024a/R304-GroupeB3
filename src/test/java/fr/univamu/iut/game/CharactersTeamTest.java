@@ -12,7 +12,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CharacterTeamTest {
+/**
+ * Tests for the characters team class
+ */
+public class CharactersTeamTest {
     @Test
     public void shouldGetName() throws EmptyNameException {
         CharactersTeam team = new CharactersTeam("LennyTeam");

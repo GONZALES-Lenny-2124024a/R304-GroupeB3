@@ -1,11 +1,13 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.game.characters.Healer;
 import fr.univamu.iut.game.characters.Mage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for the Mage class
+ */
 public class MageTest {
     @Test
     public void shouldCriticalAttack() throws InterruptedException {

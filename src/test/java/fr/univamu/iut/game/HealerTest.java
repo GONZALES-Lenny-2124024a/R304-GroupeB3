@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for the Healer class
+ */
 public class HealerTest {
     @Test
     public void shouldCriticalAttack() throws InterruptedException {
