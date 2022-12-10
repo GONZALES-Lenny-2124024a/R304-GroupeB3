@@ -1,6 +1,6 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.exceptions.EmptyNameException;
+import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
 import fr.univamu.iut.game.characters.*;
 import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.fight.TeamFight;
@@ -21,7 +21,7 @@ public class Game<T extends Character> {
     boolean endGame;
     Random rand;
 
-    public Game() throws EmptyNameException {
+    public Game() throws EmptyNameForPlayerTeamException {
         input = new Scanner(System.in);
         endGame = false;
         rand = new Random();
@@ -37,7 +37,7 @@ public class Game<T extends Character> {
             try {
                 playerTeam = new CharactersTeam<>(input.nextLine());
                 break;  // The player's team name isn't empty
-            } catch (EmptyNameException e) {
+            } catch (EmptyNameForPlayerTeamException e) {
                 e.printStackTrace();
             }
         }

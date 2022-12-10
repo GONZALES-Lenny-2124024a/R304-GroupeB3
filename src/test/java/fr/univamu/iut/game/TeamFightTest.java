@@ -1,6 +1,6 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.exceptions.EmptyNameException;
+import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
 import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.Mage;
 import fr.univamu.iut.game.fight.TeamFight;
@@ -14,29 +14,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class TeamFightTest {
     @Test
-    public void shouldGetLegendaryReward() throws EmptyNameException {
+    public void shouldGetLegendaryReward() throws EmptyNameForPlayerTeamException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.03), TeamFightRewardLevel.LEGENDARY.getReward());
     }
     @Test
-    public void shouldGetEpicReward() throws EmptyNameException {
+    public void shouldGetEpicReward() throws EmptyNameForPlayerTeamException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.08), TeamFightRewardLevel.EPIC.getReward());
     }
     @Test
-    public void shouldGetRareReward() throws EmptyNameException {
+    public void shouldGetRareReward() throws EmptyNameForPlayerTeamException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.3), TeamFightRewardLevel.RARE.getReward());
     }
 
     @Test
-    public void shouldGetCommoneward() throws EmptyNameException {
+    public void shouldGetCommoneward() throws EmptyNameForPlayerTeamException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(1), TeamFightRewardLevel.COMMON.getReward());
     }
 
     @Test
-    public void shouldWin() throws InterruptedException,EmptyNameException {
+    public void shouldWin() throws InterruptedException,EmptyNameForPlayerTeamException {
         //Creation of the enemy team
         Mage mageEnemy = new Mage("Enemy");
         CharactersTeam teamEnemy = new CharactersTeam("EnemyTeam");
@@ -53,7 +53,7 @@ public class TeamFightTest {
     }
 
     @Test
-    public void shouldDefeat() throws InterruptedException,EmptyNameException {
+    public void shouldDefeat() throws InterruptedException,EmptyNameForPlayerTeamException {
         //Creation of the player team
         Mage magePlayer = new Mage("Player");
         CharactersTeam teamPlayer = new CharactersTeam("LennyTeam");
@@ -70,7 +70,7 @@ public class TeamFightTest {
     }
 
     @Test
-    public void shouldGetRandomCharacter() throws EmptyNameException {
+    public void shouldGetRandomCharacter() throws EmptyNameForPlayerTeamException {
         Mage mage = new Mage("Player");
 
         CharactersTeam teamPlayer = new CharactersTeam("LennyTeam");
