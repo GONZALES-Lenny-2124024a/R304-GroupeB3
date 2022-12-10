@@ -1,5 +1,6 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.exceptions.EmptyNameException;
 import fr.univamu.iut.game.characters.Archer;
 import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.Mage;
@@ -13,33 +14,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CharacterTeamTest {
     @Test
-    public void shouldGetName() {
+    public void shouldGetName() throws EmptyNameException {
         CharactersTeam team = new CharactersTeam("LennyTeam");
         assertEquals(team.getName(), "LennyTeam");
     }
 
     @Test
-    public void shouldSetName() {
+    public void shouldSetName() throws EmptyNameException {
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.setName("OtherName");
         assertEquals(team.getName(), "OtherName");
     }
 
     @Test
-    public void shouldGetGold() {
+    public void shouldGetGold() throws EmptyNameException {
         CharactersTeam team = new CharactersTeam("LennyTeam");
         assertEquals(team.getGold(), 0);
     }
 
     @Test
-    public void shouldSetGold() {
+    public void shouldSetGold() throws EmptyNameException {
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.setGold(100);
         assertEquals(team.getGold(), 100);
     }
 
     @Test
-    public void shouldGetSpecificCharacter() {
+    public void shouldGetSpecificCharacter() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.addCharacter(p);
@@ -47,7 +48,7 @@ public class CharacterTeamTest {
     }
 
     @Test
-    public void shouldAddACharacter() {
+    public void shouldAddACharacter() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.addCharacter(p);
@@ -55,7 +56,7 @@ public class CharacterTeamTest {
     }
 
     @Test
-    public void shouldGetSize() {
+    public void shouldGetSize() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.addCharacter(p);
@@ -63,7 +64,7 @@ public class CharacterTeamTest {
     }
 
     @Test
-    public void shouldDelCharacter() {
+    public void shouldDelCharacter() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         CharactersTeam team = new CharactersTeam("LennyTeam");
         team.addCharacter(p);
@@ -72,7 +73,7 @@ public class CharacterTeamTest {
     }
 
     @Test
-    public void shouldGetCharacters() {
+    public void shouldGetCharacters() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         List<Character> listCharacters = new ArrayList<>();
         listCharacters.add(p);
@@ -83,7 +84,7 @@ public class CharacterTeamTest {
     }
 
     @Test
-    public void shouldSetCharacters() {
+    public void shouldSetCharacters() throws EmptyNameException {
         Mage p = new Mage("Lenny");
         List<Character> listCharacters = new ArrayList<>();
         listCharacters.add(p);

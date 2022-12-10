@@ -1,5 +1,7 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.exceptions.EmptyNameException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,12 @@ public class CharactersTeam<T extends Character> {
     private List<T> characters;
     private int gold;
 
-    public CharactersTeam(String name) {
-        this.name = name;
+    public CharactersTeam(String name) throws EmptyNameException {
+        if(name.length() > 0) {
+            this.name = name;
+        } else {
+            throw new EmptyNameException();
+        }
         characters = new ArrayList<>();
     }
 

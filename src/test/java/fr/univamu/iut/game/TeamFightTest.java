@@ -1,5 +1,6 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.exceptions.EmptyNameException;
 import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.Mage;
 import fr.univamu.iut.game.fight.TeamFight;
@@ -10,29 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TeamFightTest {
     @Test
-    public void shouldGetLegendaryReward() {
+    public void shouldGetLegendaryReward() throws EmptyNameException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.03), TeamFightRewardLevel.LEGENDARY.getReward());
     }
     @Test
-    public void shouldGetEpicReward() {
+    public void shouldGetEpicReward() throws EmptyNameException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.08), TeamFightRewardLevel.EPIC.getReward());
     }
     @Test
-    public void shouldGetRareReward() {
+    public void shouldGetRareReward() throws EmptyNameException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.3), TeamFightRewardLevel.RARE.getReward());
     }
 
     @Test
-    public void shouldGetCommoneward() {
+    public void shouldGetCommoneward() throws EmptyNameException {
         TeamFight fight = new TeamFight(new CharactersTeam("LennyTeam"), new CharactersTeam("EnemyTeam"));
         assertEquals(fight.getRewardLevel(1), TeamFightRewardLevel.COMMON.getReward());
     }
 
     @Test
-    public void shouldWin() throws InterruptedException {
+    public void shouldWin() throws InterruptedException,EmptyNameException {
         //Creation of the enemy team
         Mage mageEnemy = new Mage("Enemy");
         CharactersTeam teamEnemy = new CharactersTeam("EnemyTeam");
@@ -49,7 +50,7 @@ public class TeamFightTest {
     }
 
     @Test
-    public void shouldDefeat() throws InterruptedException {
+    public void shouldDefeat() throws InterruptedException,EmptyNameException {
         //Creation of the player team
         Mage magePlayer = new Mage("Player");
         CharactersTeam teamPlayer = new CharactersTeam("LennyTeam");
@@ -66,7 +67,7 @@ public class TeamFightTest {
     }
 
     @Test
-    public void shouldGetRandomCharacter() {
+    public void shouldGetRandomCharacter() throws EmptyNameException {
         Mage mage = new Mage("Player");
 
         CharactersTeam teamPlayer = new CharactersTeam("LennyTeam");
