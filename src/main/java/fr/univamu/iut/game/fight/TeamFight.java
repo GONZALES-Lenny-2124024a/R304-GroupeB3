@@ -67,7 +67,7 @@ public class TeamFight<T extends Character> {
     public boolean attack(CharactersTeam<T> attackingTeam, CharactersTeam<T> victimTeam) throws InterruptedException {
         for (T attackingCharacter : attackingTeam.getCharacters()) {
             T victimCharacter = getRandomCharacter(victimTeam);
-            attackingCharacter.attack(victimCharacter);
+            attackingCharacter.attack(victimCharacter, Math.random());
 
             if (victimCharacter.getLife() <= 0) {
                 victimTeam.delCharacter(victimCharacter);

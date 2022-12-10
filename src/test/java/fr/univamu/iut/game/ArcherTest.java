@@ -6,6 +6,35 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArcherTest {
+
+
+    @Test
+    public void shouldCriticalAttack() throws InterruptedException {
+        Archer cPlayer = new Archer("Lenny");
+        Archer ePlayer = new Archer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.02);
+        assertEquals(ePlayer.getLife(), 60);
+    }
+
+    @Test
+    public void shouldSpecialAttack() throws InterruptedException {
+        Archer cPlayer = new Archer("Lenny");
+        Archer ePlayer = new Archer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.12);
+        assertEquals(ePlayer.getLife(), 75);
+    }
+
+    @Test
+    public void shouldBasicAttack() throws InterruptedException {
+        Archer cPlayer = new Archer("Lenny");
+        Archer ePlayer = new Archer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.5);
+        assertEquals(ePlayer.getLife(), 90);
+    }
+
     @Test
     public void shouldGetName() {
         Archer p = new Archer("Lenny");

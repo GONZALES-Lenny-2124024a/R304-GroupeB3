@@ -1,11 +1,38 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.game.characters.Archer;
 import fr.univamu.iut.game.characters.Healer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HealerTest {
+    @Test
+    public void shouldCriticalAttack() throws InterruptedException {
+        Healer cPlayer = new Healer("Lenny");
+        Healer ePlayer = new Healer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.02);
+        assertEquals(ePlayer.getLife(), 78);
+    }
+
+    @Test
+    public void shouldSpecialAttack() throws InterruptedException {
+        Healer cPlayer = new Healer("Lenny");
+        Healer ePlayer = new Healer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.12);
+        assertEquals(ePlayer.getLife(), 100);
+    }
+
+    @Test
+    public void shouldBasicAttack() throws InterruptedException {
+        Healer cPlayer = new Healer("Lenny");
+        Healer ePlayer = new Healer("Enemy");
+
+        cPlayer.attack(ePlayer, 0.5);
+        assertEquals(ePlayer.getLife(), 94);
+    }
 
     @Test
     public void shouldGetName() {

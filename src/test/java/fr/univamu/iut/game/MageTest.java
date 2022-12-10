@@ -1,11 +1,38 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.game.characters.Healer;
 import fr.univamu.iut.game.characters.Mage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MageTest {
+    @Test
+    public void shouldCriticalAttack() throws InterruptedException {
+        Mage cPlayer = new Mage("Lenny");
+        Mage ePlayer = new Mage("Enemy");
+
+        cPlayer.attack(ePlayer, 0.02);
+        assertEquals(ePlayer.getLife(), 77);
+    }
+
+    @Test
+    public void shouldSpecialAttack() throws InterruptedException {
+        Mage cPlayer = new Mage("Lenny");
+        Mage ePlayer = new Mage("Enemy");
+
+        cPlayer.attack(ePlayer, 0.12);
+        assertEquals(ePlayer.getLife(), 92);
+    }
+
+    @Test
+    public void shouldBasicAttack() throws InterruptedException {
+        Mage cPlayer = new Mage("Lenny");
+        Mage ePlayer = new Mage("Enemy");
+
+        cPlayer.attack(ePlayer, 0.5);
+        assertEquals(ePlayer.getLife(), 97);
+    }
     @Test
     public void shouldGetName() {
         Mage p = new Mage("Lenny");

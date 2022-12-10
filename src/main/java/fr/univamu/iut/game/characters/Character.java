@@ -115,20 +115,19 @@ public abstract class Character {
      * @return the damage
      * @throws InterruptedException
      */
-    public void attack(Character pEnemy) throws InterruptedException {
+    public void attack(Character pEnemy, double randomValue) throws InterruptedException {
         int damageAttack = getDamage();
-        double rand = Math.random();
 
-        if(rand <= 0.05) {  // 5% chance of making a critical attack
-            damageAttack *=3;
+        if (randomValue <= 0.05) {   // 5% chance of making a critical attack
+            damageAttack *= 3;
             pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - damageAttack);
-            System.out.println(getName() + " -> " + pEnemy.getName() + " ("+ getDamage()*3 + ") with a Critical Attack");
-        } else if (rand > 0.05 && rand <= 0.15) { // 10% chance of making a special attack
-            damageAttack = specialAttack(pEnemy);
-            System.out.println(getName() + " performed his special attack ! (" + damageAttack + ')');
-        } else {    // Default attack
+            System.out.println(getName() + " -> " + pEnemy.getName() + " (" + getDamage() * 3 + ") with a Critical Attack");
+        } else if (randomValue > 0.15) { // 85% chance of making a critical attack
             pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - getDamage());
             System.out.println(getName() + " -> " + pEnemy.getName() + " (" + damageAttack + ')');
+        } else { // 10% chance of making a special attack
+            damageAttack = specialAttack(pEnemy);
+            System.out.println(getName() + " performed his special attack ! (" + damageAttack + ')');
         }
         setDamageInFight(getDamageInFight() + damage);
     }
