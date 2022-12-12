@@ -1,6 +1,6 @@
 package fr.univamu.iut.game.characters;
 
-import fr.univamu.iut.game.attributs.Distance;
+import fr.univamu.iut.game.characters.attributs.Distance;
 
 /**
  * It's a type of character that does a lot of damage but is weak.

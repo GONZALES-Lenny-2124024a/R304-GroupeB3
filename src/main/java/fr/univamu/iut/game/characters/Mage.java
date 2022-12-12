@@ -1,7 +1,7 @@
 package fr.univamu.iut.game.characters;
 
-import fr.univamu.iut.game.attributs.Distance;
-import fr.univamu.iut.game.attributs.Fly;
+import fr.univamu.iut.game.characters.attributs.Distance;
+import fr.univamu.iut.game.characters.attributs.Fly;
 
 /**
  * This is an average character type in terms of damage and protection.

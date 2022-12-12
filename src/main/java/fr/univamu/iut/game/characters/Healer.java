@@ -1,7 +1,7 @@
 package fr.univamu.iut.game.characters;
 
-import fr.univamu.iut.game.attributs.Distance;
-import fr.univamu.iut.game.attributs.Fly;
+import fr.univamu.iut.game.characters.attributs.Distance;
+import fr.univamu.iut.game.characters.attributs.Fly;
 
 /**
  * It's a type of character that can heal itself.
