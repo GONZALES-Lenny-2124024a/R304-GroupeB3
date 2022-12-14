@@ -32,7 +32,7 @@ Notre applcation est un jeu où l'utilisateur créer sa propre équipe de person
 
 L'utilisateur peut combattre une équipe adverse généré automatiquement par rapport à l'équipe de l'utilisateur.
 Lors d'un combat, l'utilisateur peut perdre un ou plusieurs de ses personnages, mais lorsque l'utilisateur gagne, chaque personnage de son équipe gagne de l'expérience et de l'argent (gold).
-Avec cet argent, il peut acheter d'autres personnages.
+Avec cet argent, il peut acheter d'autres personnages et des équipements augmenteront les statistiques de ses personnages.
 
 Pour finir, lorsque l'utilisateur a perdu un combat, la partie est finie puisqu'il ne possède plus aucun personnage.
 
@@ -45,7 +45,7 @@ git clone https://github.com/LennyGonzales/R304-GroupeB3.git
 
 Puis à partir d'un IDE, exécuter simplement cette ligne du fichier Main.java
 ```java
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, EmptyNameForCharactersTeamException {
 ```
 
 ## Membres
