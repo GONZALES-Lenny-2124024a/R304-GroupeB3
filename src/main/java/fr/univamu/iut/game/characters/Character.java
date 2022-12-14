@@ -270,9 +270,6 @@ public abstract class Character implements Observer<List<Equipment>> {
                 case WEAPON -> defenceEquipments += equipment.getEquipmentName().getPoints();
             }
         }
-        System.out.println("damage : " + damageEquipments);
-        System.out.println("defence : " + defenceEquipments);
-
     }
 
     /**
