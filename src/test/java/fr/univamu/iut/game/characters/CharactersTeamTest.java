@@ -40,7 +40,7 @@ public class CharactersTeamTest {
     @Test
     public void shouldGetGold() throws EmptyNameForCharactersTeamException {
         CharactersTeam team = new CharactersTeam("LennyTeam");
-        assertEquals(team.getGold(), 0);
+        assertEquals(team.getGold(), 150);
     }
 
     @Test

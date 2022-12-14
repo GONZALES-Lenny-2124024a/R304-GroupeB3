@@ -48,7 +48,6 @@ public class Game<T extends Character> {
                 e.printStackTrace();
             }
         }
-        playerTeam.setGold(150);
         market = new Market(playerTeam, input);
     }
 

@@ -49,7 +49,7 @@ public class MarketTest<T extends Character> {
         market.buyCharacter("archer");
 
         assertEquals(charactersTeam.getSize(), 0);
-        assertEquals(charactersTeam.getGold(), 0);
+        assertEquals(charactersTeam.getGold(), 150);
     }
 
     @Test
@@ -81,6 +81,6 @@ public class MarketTest<T extends Character> {
         market.buyCharacter("archer");
 
         assertEquals(charactersTeam.getSize(), 0);
-        assertEquals(charactersTeam.getGold(), 0);
+        assertEquals(charactersTeam.getGold(), 150);
     }
 }

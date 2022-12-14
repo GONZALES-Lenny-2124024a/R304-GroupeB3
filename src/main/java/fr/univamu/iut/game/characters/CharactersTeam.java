@@ -32,6 +32,7 @@ public class CharactersTeam<T extends Character> implements Observable {
         }
         characters = new ArrayList<>();
         equipments = new ArrayList<>();
+        gold = 150;
     }
 
     /**
