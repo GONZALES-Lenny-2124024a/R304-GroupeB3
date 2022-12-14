@@ -12,6 +12,10 @@ public class Archer extends Character implements Distance {
         setDamage(15);
         setDefence(5);
     }
+
+    /**
+     * Increase the stats of the character (Damage and defence)
+     */
     @Override
     public void increaseStats() {
         setDamage((int) (getDamage() * 1.3));
@@ -25,7 +29,7 @@ public class Archer extends Character implements Distance {
 
     @Override
     public int specialAttack(Character pEnemy) {
-        pEnemy.setLife((getLife() + getDefence()) - (2*getDamage()));
+        pEnemy.setLife((getLife() + getDefenceWithEquipments()) - (2*getDamageWithEquipments()));
         return (2 * getDamage());
     }
 

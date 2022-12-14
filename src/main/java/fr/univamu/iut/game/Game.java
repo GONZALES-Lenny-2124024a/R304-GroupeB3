@@ -50,7 +50,6 @@ public class Game<T extends Character> {
                 e.printStackTrace();
             }
         }
-        playerTeam.setGold(1000);   //--------------------------------------------
         market = new Market(playerTeam, input);
     }
 
@@ -117,53 +116,6 @@ public class Game<T extends Character> {
         TeamFight fight = new TeamFight(playerTeam, enemyTeam);
         if (fight.run().equals("defeat")) { // If the player loses, the game stops
             endGame = true;
-        }
-    }
-
-    /**
-     * Presents the market's items
-     */
-    public static void presentationMarket() {
-        StringBuilder output = new StringBuilder();
-        for (CharactersEnum item : CharactersEnum.values()) {
-            output.append(item + " : " + item.getPrice() + '\n');
-        }
-        System.out.println(output);
-    }
-
-    /**
-     * Verify if the user have enough gold, it takes away the gold
-     * @param characterEnum Market which contains all the characters that the user can buy
-     * @return true if the character have enough gold, else false
-     */
-    public boolean buyCharacter(CharactersEnum characterEnum) {
-        if (playerTeam.getGold() < characterEnum.getPrice()) {
-            System.out.println("You don't have enough gold !");
-            return false;
-        }
-        playerTeam.setGold(playerTeam.getGold() - characterEnum.getPrice());
-        return true;
-    }
-
-    /**
-     * Allows the user to buy new characters
-     */
-    public void marketMode() {
-        presentationMarket();
-        System.out.println("Enter the name of the character that you want to buy :");
-
-        switch (input.nextLine().toLowerCase()) {
-            case "archer":
-                if(buyCharacter(CharactersEnum.ARCHER)) { playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1))); }
-                break;
-
-            case "mage":
-                if(buyCharacter(CharactersEnum.MAGE)) { playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1))); }
-                break;
-
-            case "healer":
-                if(buyCharacter(CharactersEnum.HEALER)) { playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1))); }
-                break;
         }
     }
 

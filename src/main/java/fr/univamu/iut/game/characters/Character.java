@@ -14,10 +14,10 @@ public abstract class Character implements Observer<List<Equipment>> {
     private int xp;
     private int xpNecessary;
     private int damage;
-    private int damageEquipment;
+    private int damageEquipments;
     private int damageInFight;
     private int defence;
-    private int defenceEquipment;
+    private int defenceEquipments;
     private int life;
 
     public Character(String name) {
@@ -87,9 +87,10 @@ public abstract class Character implements Observer<List<Equipment>> {
         this.xpNecessary = xpNecessary;
     }
 
-    public int getDamage() {
-        return (damage + damageEquipment);
+    public int getDamageWithEquipments() {
+        return (damage + damageEquipments);
     }
+    public int getDamage() { return damage; }
 
     public void setDamage(int damage) {
         this.damage = damage;
@@ -104,8 +105,9 @@ public abstract class Character implements Observer<List<Equipment>> {
     }
 
     public int getDefence() {
-        return (defence + defenceEquipment);
+        return defence;
     }
+    public int getDefenceWithEquipments() { return (defence + defenceEquipments); }
 
     public void setDefence(int defence) {
         this.defence = defence;
@@ -119,20 +121,37 @@ public abstract class Character implements Observer<List<Equipment>> {
         this.life = life;
     }
 
+    public int getDamageEquipments() {
+        return damageEquipments;
+    }
+
+    public void setDamageEquipments(int damageEquipments) {
+        this.damageEquipments = damageEquipments;
+    }
+
+    public int getDefenceEquipments() {
+        return defenceEquipments;
+    }
+
+    public void setDefenceEquipments(int defenceEquipments) {
+        this.defenceEquipments = defenceEquipments;
+    }
+
     /**
      * This character attack another character
      * @param pEnemy enemy character
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void attack(Character pEnemy, double randomValue) throws InterruptedException {
-        int damageAttack = getDamage();
+        int damageAttack = getDamageWithEquipments();
+        int enemyDefence = pEnemy.getLife() + pEnemy.getDefenceWithEquipments();
 
         if (randomValue <= 0.05) {   // 5% chance of making a critical attack
             damageAttack *= 3;
-            pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - damageAttack);
-            System.out.println(getName() + " -> " + pEnemy.getName() + " (" + getDamage() * 3 + ") with a Critical Attack");
+            pEnemy.setLife(enemyDefence - damageAttack);
+            System.out.println(getName() + " -> " + pEnemy.getName() + " (" + damageAttack + ") with a Critical Attack");
         } else if (randomValue > 0.15) { // 85% chance of making a critical attack
-            pEnemy.setLife((pEnemy.getLife() + pEnemy.getDefence()) - getDamage());
+            pEnemy.setLife(enemyDefence - getDamage());
             System.out.println(getName() + " -> " + pEnemy.getName() + " (" + damageAttack + ')');
         } else { // 10% chance of making a special attack
             damageAttack = specialAttack(pEnemy);
@@ -149,17 +168,17 @@ public abstract class Character implements Observer<List<Equipment>> {
      */
     @Override
     public void update(List<Equipment> equipments) {
-        damageEquipment = 0;
-        defenceEquipment = 0;
+        damageEquipments = 0;
+        defenceEquipments = 0;
 
         for (Equipment equipment : equipments) {
             switch (equipment.getEquipmentType()) {
-                case ARMOR -> damageEquipment += equipment.getEquipmentName().getPoints();
-                case WEAPON -> defenceEquipment += equipment.getEquipmentName().getPoints();
+                case ARMOR -> damageEquipments += equipment.getEquipmentName().getPoints();
+                case WEAPON -> defenceEquipments += equipment.getEquipmentName().getPoints();
             }
         }
-        System.out.println("damage : " + damageEquipment);
-        System.out.println("defence : " + defenceEquipment);
+        System.out.println("damage : " + damageEquipments);
+        System.out.println("defence : " + defenceEquipments);
 
     }
 
@@ -169,6 +188,7 @@ public abstract class Character implements Observer<List<Equipment>> {
                 "level : " + level + '\n' +
                 "xp : " + xp + '/' + xpNecessary + '\n' +
                 "damage : " + getDamage() + '\n' +
+                "damage : " + getDamageEquipments() + '\n' +
                 "defence : " + getDefence() + '\n' +
                 "life : " + getLife();
     }
