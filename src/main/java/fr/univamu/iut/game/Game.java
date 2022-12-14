@@ -25,6 +25,8 @@ public class Game<T extends Character> {
     private Random rand;
     private CharacterFactory characterFactory;
     private Market market;
+    private int stageFight;
+    private TeamFight fight;
 
 
     public Game() throws EmptyNameForCharactersTeamException {
@@ -33,6 +35,7 @@ public class Game<T extends Character> {
         rand = new Random();
         enemyTeam = new CharactersTeam<>("EnemyTeam");
         characterFactory = new CharacterFactory();
+        stageFight = 1;
     }
 
     /**
@@ -90,7 +93,9 @@ public class Game<T extends Character> {
 
             // Coefficient between 0.3 and 1.15 for the attributes (Damage and Defense)
             enemy.setDamage((int) (player.getDamage() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
+            enemy.setDamageEquipments((int) (player.getDamageEquipments() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
             enemy.setDefence((int) (player.getDefence() * rand.nextDouble() * (1.15 - 0.3) + 0.3));
+            enemy.setDefenceEquipments((int) (player.getDefenceEquipments() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
 
             enemyTeam.addCharacter((T) enemy);
         }
@@ -102,10 +107,14 @@ public class Game<T extends Character> {
      */
     public void fightMode() throws InterruptedException {
         creationEnemyTeam();
-        TeamFight fight = new TeamFight(playerTeam, enemyTeam);
+        System.out.println("\n----------- Stage " + stageFight + " -----------");
+        if(fight == null) { // Allows to user only one instance of teamFight
+            fight = new TeamFight(playerTeam, enemyTeam);
+        }
         if (fight.run().equals("defeat")) { // If the player loses, the game stops
             endGame = true;
         }
+        ++stageFight;
     }
 
     /**
@@ -135,6 +144,10 @@ public class Game<T extends Character> {
         }
     }
 
+    /**
+     * Runs the game
+     * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     */
     public void run() throws InterruptedException {
         introduction();
         gameMenu();
