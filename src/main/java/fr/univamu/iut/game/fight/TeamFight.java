@@ -9,6 +9,7 @@ import java.util.*;
 /**
  * Supports the fight between two characters team
  * @param <T> accepts types of character (Mage, Healer, Archer)
+ * @author LennyGonzales
  */
 public class TeamFight<T extends Character> {
     private CharactersTeam<T> playerTeam;
@@ -22,7 +23,9 @@ public class TeamFight<T extends Character> {
     }
 
     /**
-     * Return the level of the reward
+     * Get the level of the reward
+     * @param randValue a int between 0 (inclusive) and 1 (inclusive)
+     * @return the reward level
      */
     public int getRewardLevel(double randValue) {
         if (randValue <= 0.03) { // 3% chance to have a legendary reward
@@ -54,8 +57,8 @@ public class TeamFight<T extends Character> {
 
     /**
      * Get a random character from a team
-     * @param team (characters team)
-     * @return a character
+     * @param team characters team
+     * @return a random character from a team
      */
     public T getRandomCharacter(CharactersTeam<T> team) {
         return team.getCharacters().get((int)(Math.random()*team.getCharacters().size()));

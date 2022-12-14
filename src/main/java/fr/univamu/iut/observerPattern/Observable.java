@@ -2,6 +2,7 @@ package fr.univamu.iut.observerPattern;
 
 /**
  * Can be observable by observers and inform them of a change in state
+ * @author LennyGonzales
  */
 public interface Observable {
     /**

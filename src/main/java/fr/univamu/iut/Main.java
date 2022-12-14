@@ -5,6 +5,7 @@ import fr.univamu.iut.game.Game;
 
 /**
  * Main class which begin a game
+ * @authgr LennyGonzales
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException, EmptyNameForPlayerTeamException {

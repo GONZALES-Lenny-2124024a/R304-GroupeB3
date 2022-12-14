@@ -10,6 +10,11 @@ import fr.univamu.iut.game.equipments.EquipmentType;
 
 import java.util.Scanner;
 
+/**
+ * Supports the market
+ * @param <T> accepts types of character
+ * @author LennyGonzales
+ */
 public class Market<T extends Character> {
 
     private CharactersTeam<T> playerTeam;
@@ -23,9 +28,12 @@ public class Market<T extends Character> {
         output = new StringBuilder();
     }
 
+    /**
+     * Ask the user what category of products he wants to buy
+     */
     public void marketMode() {
         System.out.println("Characters | Equipments");
-        System.out.println("Enter a catagory :");
+        System.out.println("Enter a category :");
         switch (input.nextLine().toLowerCase()) {
             case "characters":
                 presentationItemsInCategory(CharactersEnum.values());
@@ -36,6 +44,10 @@ public class Market<T extends Character> {
         }
     }
 
+    /**
+     * Presents a category's items
+     * @param enumerator a list of enumerator value associated to a type of category
+     */
     public void presentationItemsInCategory(Enum<?>[] enumerator) {
         if(enumerator[0] instanceof CharactersEnum) {
             presentCharactersEnum();
@@ -45,12 +57,19 @@ public class Market<T extends Character> {
         }
     }
 
+    /**
+     * Presents the characters enumerator to the user
+     */
     public void presentCharactersEnum() {
         for (CharactersEnum charactersEnum : CharactersEnum.values()) {
             System.out.println(charactersEnum.toString() + " - Price : " + charactersEnum.getPrice());
         }
     }
 
+    /**
+     * Presents the different types of equipments to the user and ask him to enter a category
+     * @return an equipment type
+     */
     public EquipmentType presentEquipmentType() {
         // Presentation category
         output.delete(0, output.length());
@@ -65,6 +84,11 @@ public class Market<T extends Character> {
         return presentEquipmentName(input.nextLine().toLowerCase());
     }
 
+    /**
+     * Presents the equipments name for a category of equipment
+     * @param inputStr a category string
+     * @return an equipment type
+     */
     public EquipmentType presentEquipmentName(String inputStr) {
         for(EquipmentType equipmentType : EquipmentType.values()) {
             if ((equipmentType.toString().toLowerCase()).equals(inputStr)) {    // Get the category type
@@ -79,6 +103,10 @@ public class Market<T extends Character> {
         return null;
     }
 
+    /**
+     * Supports the payment of an equipment
+     * @param equipmentType the type of the equipment
+     */
     public void buyEquipment(EquipmentType equipmentType) {
         System.out.println("Enter a equipment name");
         inputStr = input.nextLine().toLowerCase();
@@ -94,6 +122,9 @@ public class Market<T extends Character> {
         }
     }
 
+    /**
+     * Supports the payment of a character
+     */
     public void buyCharacter() {
         CharacterFactory characterFactory = new CharacterFactory();
         System.out.println("Enter the name of the character that you want to buy :");
@@ -108,9 +139,12 @@ public class Market<T extends Character> {
                 }
             }
         }
-        System.out.println(playerTeam);
     }
 
+    /**
+     * Decrease the number of golds of the player team
+     * @param golds the number of gold to decrease
+     */
     public void decreasePlayerTeamGolds(int golds) {
         playerTeam.setGold(playerTeam.getGold() - golds);
     }

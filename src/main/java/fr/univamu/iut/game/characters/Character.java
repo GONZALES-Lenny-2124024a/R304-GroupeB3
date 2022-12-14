@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Abstract method that has all the basic methods of a character
+ * @author LennyGonzales
  */
 public abstract class Character implements Observer<List<Equipment>> {
     private String name;
@@ -29,18 +30,34 @@ public abstract class Character implements Observer<List<Equipment>> {
         damageInFight = 0;
     }
 
+    /**
+     * Get the character's name
+     * @return name of the character
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the character's name
+     * @param name character's name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Set the character's level
+     * @param level character's level
+     */
     public void setLevel(int level) {
         this.level = level;
     }
 
+    /**
+     * Get the character's level
+     * @return character's level
+     */
     public int getLevel() {
         return level;
     }
@@ -54,85 +71,155 @@ public abstract class Character implements Observer<List<Equipment>> {
     }
 
     /**
-     * Increase attributes (damage, defence) of the character
+     * Increase attributes of the character
      */
     public void increaseStats() {
-        setDamage((int) (getDamage() * 1.2));
-        setDefence((int) (getDefence() * 1.2));
+        setDamage((int) (getDamage() * 1.1));
+        setDefence((int) (getDefence() * 1.1));
     }
 
+    /**
+     * Get the character's experience
+     * @return character's experience
+     */
     public int getXp() {
         return xp;
     }
 
     /**
      * Set the xp and check if the character can level up
-     * @param xp int
+     * @param xp new character's experience
      */
     public void setXp(int xp) {
         this.xp = xp;
 
-        if (getXp() >= getXpNecessary()) {
+        if (getXp() >= getXpNecessary()) {  // Check if the player can level up
             this.xp = 0;
-            incrementLevel();
-            setXpNecessary((int) (getXpNecessary() * 1.4));
+            incrementLevel();   // Increment the level by 1
+            setXpNecessary((int) (getXpNecessary() * 1.4)); // Increase the necessary experience to level up
         }
     }
 
+    /**
+     * Get the experience (xp) necessary to level up
+     * @return the experience necessary to level up
+     */
     public int getXpNecessary() {
         return xpNecessary;
     }
 
+    /**
+     * Set the experience necessary to level up
+     * @param xpNecessary the experience necessary to level up
+     */
     public void setXpNecessary(int xpNecessary) {
         this.xpNecessary = xpNecessary;
     }
 
+    /**
+     * Get the damage of the character with his equipments
+     * @return the damage
+     */
     public int getDamageWithEquipments() {
         return (damage + damageEquipments);
     }
+
+    /**
+     * Get the base damage of the character
+     * @return the base damage
+     */
     public int getDamage() { return damage; }
 
+    /**
+     * Set the base damage of the character
+     * @param damage the new base damage of the character
+     */
     public void setDamage(int damage) {
         this.damage = damage;
     }
 
+    /**
+     * Get the total damage done during a fight
+     * @return the total damage
+     */
     public int getDamageInFight() {
         return damageInFight;
     }
 
+    /**
+     * Set the total damage done during a fight
+     * @param damageInFight the new total damage
+     */
     public void setDamageInFight(int damageInFight) {
         this.damageInFight = damageInFight;
     }
 
+    /**
+     * Get the base defence of the character
+     * @return the base defence
+     */
     public int getDefence() {
         return defence;
     }
-    public int getDefenceWithEquipments() { return (defence + defenceEquipments); }
 
+    /**
+     * Set the base defence of the character
+     * @param defence the new base defence of the character
+     */
     public void setDefence(int defence) {
         this.defence = defence;
     }
 
+    /**
+     * Get the defence of the character with his equipments
+     * @return the defence points
+     */
+    public int getDefenceWithEquipments() { return (defence + defenceEquipments); }
+
+    /**
+     * Get the life of the character
+     * @return his life
+     */
     public int getLife() {
         return life;
     }
 
+    /**
+     * Set the life of the character
+     * @param life his new life
+     */
     public void setLife(int life) {
         this.life = life;
     }
 
+    /**
+     * Get the damage from equipments
+     * @return his equipments damage
+     */
     public int getDamageEquipments() {
         return damageEquipments;
     }
 
+    /**
+     * Set the damage from equipments
+     * @param damageEquipments his new equipments damage
+     */
     public void setDamageEquipments(int damageEquipments) {
         this.damageEquipments = damageEquipments;
     }
 
+    /**
+     * Get the defence from equipments
+     * @return his equipments defence
+     */
     public int getDefenceEquipments() {
         return defenceEquipments;
     }
 
+    /**
+     * Set the defence from equipments
+     * @param defenceEquipments his new equipments defence
+     */
     public void setDefenceEquipments(int defenceEquipments) {
         this.defenceEquipments = defenceEquipments;
     }
@@ -160,6 +247,12 @@ public abstract class Character implements Observer<List<Equipment>> {
         setDamageInFight(getDamageInFight() + damage);
     }
 
+    /**
+     * Perform a special attack on a given character
+     * @param pEnemy The target character to attack
+     * @return The amount of damage inflicted to the enemy character
+     * @throws InterruptedException in the Mage character, if the Thread.sleep(250) didn't go well
+     */
     protected abstract int specialAttack(Character pEnemy) throws InterruptedException;
 
     /**
@@ -182,7 +275,11 @@ public abstract class Character implements Observer<List<Equipment>> {
 
     }
 
-        @Override
+    /**
+     * Describes the character.
+     * @return the description
+     */
+    @Override
     public String toString() {
         return  "name : " + name + '\n' +
                 "level : " + level + '\n' +

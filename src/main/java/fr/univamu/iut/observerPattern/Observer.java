@@ -3,6 +3,7 @@ package fr.univamu.iut.observerPattern;
 /**
  * Allows you to observe an object and update himself when it's notified
  * <Entity> allows you to use this template for using different things
+ * @author LennyGonzales
  */
 public interface Observer<Entity> {
     /**

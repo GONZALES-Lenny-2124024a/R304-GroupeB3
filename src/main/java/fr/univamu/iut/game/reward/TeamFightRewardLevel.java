@@ -2,6 +2,7 @@ package fr.univamu.iut.game.reward;
 
 /**
  * Reward enumerator that contains all the rewards' level that the player can get after winning a team fight
+ * @author LennyGonzales
  */
 public enum TeamFightRewardLevel {
     COMMON(10),
@@ -15,5 +16,9 @@ public enum TeamFightRewardLevel {
         this.reward = reward;
     }
 
+    /**
+     * Get the number of golds to give to the player team and the number of experience to give to the characters of the player team
+     * @return the reward
+     */
     public int getReward() { return reward; }
 }

@@ -17,6 +17,7 @@ import java.util.Scanner;
 /**
  * Supports a game
  * @param <T> accepts types of character (Mage, Healer, Archer)
+ * @author LennyGonzales
  */
 public class Game<T extends Character> {
 
@@ -50,6 +51,7 @@ public class Game<T extends Character> {
                 e.printStackTrace();
             }
         }
+        playerTeam.setGold(1000);
         market = new Market(playerTeam, input);
     }
 
@@ -73,15 +75,6 @@ public class Game<T extends Character> {
                 playerTeam.addCharacter((T) characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
             }
         }
-    }
-
-    /**
-     * Creation of the player team with his first character
-     */
-    public void introduction() {
-        teamCreation();
-        showCharactersDescription();
-        chooseFirstCharacter();
     }
 
     /**
@@ -120,7 +113,16 @@ public class Game<T extends Character> {
     }
 
     /**
-     * The game menu
+     * Creation of the player team with his first character
+     */
+    public void introduction() {
+        teamCreation();
+        showCharactersDescription();
+        chooseFirstCharacter();
+    }
+
+    /**
+     * Send the game menu to the user and ask him to choose a mode
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void gameMenu() throws InterruptedException {
