@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Ganassi_Alexandre-Gonzales_Lenny-Sauva_Mathieu" />
+        <module name="R304-GroupeB3" />
       </profile>
     </annotationProcessing>
   </component>

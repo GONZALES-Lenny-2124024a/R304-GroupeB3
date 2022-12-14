@@ -2,7 +2,7 @@ package fr.univamu.iut.game;
 
 import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
 import fr.univamu.iut.game.characters.CharactersTeam;
-import fr.univamu.iut.game.characters.Mage;
+import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import fr.univamu.iut.game.fight.TeamFight;
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 import org.junit.jupiter.api.Test;

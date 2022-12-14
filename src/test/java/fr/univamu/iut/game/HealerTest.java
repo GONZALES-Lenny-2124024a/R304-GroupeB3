@@ -1,7 +1,6 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.game.characters.Archer;
-import fr.univamu.iut.game.characters.Healer;
+import fr.univamu.iut.game.characters.charactersTypes.Healer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

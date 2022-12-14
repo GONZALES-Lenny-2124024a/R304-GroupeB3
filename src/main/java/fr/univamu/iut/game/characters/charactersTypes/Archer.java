@@ -1,5 +1,6 @@
-package fr.univamu.iut.game.characters;
+package fr.univamu.iut.game.characters.charactersTypes;
 
+import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.characters.attributs.Distance;
 
 /**

@@ -1,16 +1,23 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.game.equipments.Equipment;
+import fr.univamu.iut.observerPattern.Observer;
+
+import java.util.List;
+
 /**
  * Abstract method that has all the basic methods of a character
  */
-public abstract class Character {
+public abstract class Character implements Observer<List<Equipment>> {
     private String name;
     private int level;
     private int xp;
     private int xpNecessary;
     private int damage;
+    private int damageEquipment;
     private int damageInFight;
     private int defence;
+    private int defenceEquipment;
     private int life;
 
     public Character(String name) {
@@ -81,7 +88,7 @@ public abstract class Character {
     }
 
     public int getDamage() {
-        return damage;
+        return (damage + damageEquipment);
     }
 
     public void setDamage(int damage) {
@@ -97,7 +104,7 @@ public abstract class Character {
     }
 
     public int getDefence() {
-        return defence;
+        return (defence + defenceEquipment);
     }
 
     public void setDefence(int defence) {
@@ -134,9 +141,29 @@ public abstract class Character {
         setDamageInFight(getDamageInFight() + damage);
     }
 
-    abstract int specialAttack(Character pEnemy) throws InterruptedException;
+    protected abstract int specialAttack(Character pEnemy) throws InterruptedException;
 
+    /**
+     * React to an observable notification
+     * @param equipments the observable
+     */
     @Override
+    public void update(List<Equipment> equipments) {
+        damageEquipment = 0;
+        defenceEquipment = 0;
+
+        for (Equipment equipment : equipments) {
+            switch (equipment.getEquipmentType()) {
+                case ARMOR -> damageEquipment += equipment.getEquipmentName().getPoints();
+                case WEAPON -> defenceEquipment += equipment.getEquipmentName().getPoints();
+            }
+        }
+        System.out.println("damage : " + damageEquipment);
+        System.out.println("defence : " + defenceEquipment);
+
+    }
+
+        @Override
     public String toString() {
         return  "name : " + name + '\n' +
                 "level : " + level + '\n' +

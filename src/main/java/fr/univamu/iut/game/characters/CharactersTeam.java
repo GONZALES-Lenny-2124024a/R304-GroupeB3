@@ -1,6 +1,10 @@
 package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
+import fr.univamu.iut.game.equipments.Equipment;
+import fr.univamu.iut.game.equipments.EquipmentType;
+import fr.univamu.iut.observerPattern.Observable;
+import fr.univamu.iut.observerPattern.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +13,10 @@ import java.util.List;
  * Team of characters
  * @param <T> accepts types of character (Mage, Healer, Archer)
  */
-public class CharactersTeam<T extends Character> {
+public class CharactersTeam<T extends Character> implements Observable {
     private String name;
     private List<T> characters;
+    private List<Equipment> equipments;
     private int gold;
 
     public CharactersTeam(String name) throws EmptyNameForPlayerTeamException {
@@ -21,6 +26,7 @@ public class CharactersTeam<T extends Character> {
             throw new EmptyNameForPlayerTeamException();
         }
         characters = new ArrayList<>();
+        equipments = new ArrayList<>();
     }
 
     public String getName() {
@@ -46,6 +52,25 @@ public class CharactersTeam<T extends Character> {
         characters.remove(character);
     }
 
+    public List<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
+        notifyAllObservers();
+    }
+
+    public void addEquipment(Equipment equipment) {
+        equipments.add(equipment);
+        notifyAllObservers();
+    }
+
+    public void delEquipment(Equipment equipment) {
+        equipments.remove(equipment);
+        notifyAllObservers();
+    }
+
     public int getSize() { return getCharacters().size(); }
 
     public T getSpecificCharacter(int indexCharacter) {
@@ -58,6 +83,27 @@ public class CharactersTeam<T extends Character> {
 
     public void setCharacters(List<T> characters) {
         this.characters = characters;
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        if (observer instanceof Character) {
+            addCharacter((T) observer);
+        }
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        if (observer instanceof Character) {
+            delCharacter((T) observer);
+        }
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (Character character : characters) {
+            character.update(equipments);
+        }
     }
 
     @Override

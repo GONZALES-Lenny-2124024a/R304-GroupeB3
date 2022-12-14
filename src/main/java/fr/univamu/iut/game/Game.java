@@ -3,7 +3,12 @@ package fr.univamu.iut.game;
 import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
 import fr.univamu.iut.game.characters.*;
 import fr.univamu.iut.game.characters.Character;
+import fr.univamu.iut.game.characters.charactersTypes.Archer;
+import fr.univamu.iut.game.characters.charactersTypes.Healer;
+import fr.univamu.iut.game.characters.charactersTypes.Mage;
+import fr.univamu.iut.game.characters.factory.CharacterFactory;
 import fr.univamu.iut.game.fight.TeamFight;
+import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
 import fr.univamu.iut.game.market.Market;
 
 import java.util.Random;
@@ -15,17 +20,21 @@ import java.util.Scanner;
  */
 public class Game<T extends Character> {
 
-    Scanner input;
-    CharactersTeam<T> enemyTeam;
-    CharactersTeam<T> playerTeam;
-    boolean endGame;
-    Random rand;
+    private Scanner input;
+    private CharactersTeam<T> enemyTeam;
+    private CharactersTeam<T> playerTeam;
+    private boolean endGame;
+    private Random rand;
+    private CharacterFactory characterFactory;
+    private Market market;
+
 
     public Game() throws EmptyNameForPlayerTeamException {
         input = new Scanner(System.in);
         endGame = false;
         rand = new Random();
         enemyTeam = new CharactersTeam<>("EnemyTeam");
+        characterFactory = new CharacterFactory();
     }
 
     /**
@@ -41,6 +50,8 @@ public class Game<T extends Character> {
                 e.printStackTrace();
             }
         }
+        playerTeam.setGold(1000);   //--------------------------------------------
+        market = new Market(playerTeam, input);
     }
 
     /**
@@ -48,19 +59,20 @@ public class Game<T extends Character> {
      */
     public void showCharactersDescription() {
         System.out.println("Choose your class from : " + '\n');
-        System.out.println(new Archer("Player1"));
-        System.out.println(new Mage("Player1"));
-        System.out.println(new Healer("Player1"));
+        for(CharactersEnum charactersEnum : CharactersEnum.values()) {
+            System.out.println(characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
+        }
     }
 
     /**
      * Allows the user to choose his first character
      */
     public void chooseFirstCharacter() {
-        switch(input.nextLine().toLowerCase()) {
-            case "archer" -> playerTeam.addCharacter((T) new Archer("Player1"));
-            case "healer" ->playerTeam.addCharacter((T) new Healer("Player1"));
-            default -> playerTeam.addCharacter((T) new Mage("Player1"));
+        String inputCharacter = input.nextLine().toLowerCase();
+        for(CharactersEnum charactersEnum : CharactersEnum.values()) {
+            if((charactersEnum.toString().toLowerCase()).equals(inputCharacter)) {
+                playerTeam.addCharacter((T) characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
+            }
         }
     }
 
@@ -80,13 +92,12 @@ public class Game<T extends Character> {
         Character enemy = null;
         Character player;
         String name;
+        int numCharacter;
         for (int nbPlayer = 0; nbPlayer < playerTeam.getSize(); ++nbPlayer) {   // The enemy team have the same number as the player team
             name = "Enemy" + (nbPlayer + 1);
-            switch (rand.nextInt(3)) {
-                case 0 -> enemy = new Archer(name);
-                case 1 -> enemy = new Mage(name);
-                case 2 -> enemy = new Healer(name);
-            }
+            numCharacter = rand.nextInt(CharactersEnum.values().length);
+            enemy = characterFactory.createCharacter(CharactersEnum.values()[numCharacter].toString(), name);
+
             player = playerTeam.getSpecificCharacter(nbPlayer); // Get a player in the player team
 
             // Coefficient between 0.3 and 1.15 for the attributes (Damage and Defense)
@@ -114,7 +125,7 @@ public class Game<T extends Character> {
      */
     public static void presentationMarket() {
         StringBuilder output = new StringBuilder();
-        for (Market item : Market.values()) {
+        for (CharactersEnum item : CharactersEnum.values()) {
             output.append(item + " : " + item.getPrice() + '\n');
         }
         System.out.println(output);
@@ -125,7 +136,7 @@ public class Game<T extends Character> {
      * @param characterEnum Market which contains all the characters that the user can buy
      * @return true if the character have enough gold, else false
      */
-    public boolean buyCharacter(Market characterEnum) {
+    public boolean buyCharacter(CharactersEnum characterEnum) {
         if (playerTeam.getGold() < characterEnum.getPrice()) {
             System.out.println("You don't have enough gold !");
             return false;
@@ -143,15 +154,15 @@ public class Game<T extends Character> {
 
         switch (input.nextLine().toLowerCase()) {
             case "archer":
-                if(buyCharacter(Market.ARCHER)) { playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1))); }
+                if(buyCharacter(CharactersEnum.ARCHER)) { playerTeam.addCharacter((T) new Archer("Player" + (playerTeam.getSize() + 1))); }
                 break;
 
             case "mage":
-                if(buyCharacter(Market.MAGE)) { playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1))); }
+                if(buyCharacter(CharactersEnum.MAGE)) { playerTeam.addCharacter((T) new Mage("Player" + (playerTeam.getSize() + 1))); }
                 break;
 
             case "healer":
-                if(buyCharacter(Market.HEALER)) { playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1))); }
+                if(buyCharacter(CharactersEnum.HEALER)) { playerTeam.addCharacter((T) new Healer("Player" + (playerTeam.getSize() + 1))); }
                 break;
         }
     }
@@ -166,7 +177,7 @@ public class Game<T extends Character> {
             System.out.println("\nFight | Market | Profile | Quit");  // Presents the game's pages
             switch(input.nextLine().toLowerCase()) {
                 case "fight" -> fightMode();
-                case "market" -> marketMode();
+                case "market" -> market.marketMode();
                 case "profile" -> System.out.println(playerTeam);    // Show the player team
                 case "quit" -> endGame = true;
             }
