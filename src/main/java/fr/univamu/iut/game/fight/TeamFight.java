@@ -24,7 +24,7 @@ public class TeamFight<T extends Character> {
 
     /**
      * Get the level of the reward
-     * @param randValue a int between 0 (inclusive) and 1 (inclusive)
+     * @param randValue an int between 0 (inclusive) and 1 (inclusive)
      * @return the reward level
      */
     public int getRewardLevel(double randValue) {

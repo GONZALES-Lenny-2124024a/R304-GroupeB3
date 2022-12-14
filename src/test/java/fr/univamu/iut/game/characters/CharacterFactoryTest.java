@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests for the CharacterFactory class
+ * @author LennyGonzales
+ */
 public class CharacterFactoryTest {
     @Test
     public void shouldReturnArcher() {

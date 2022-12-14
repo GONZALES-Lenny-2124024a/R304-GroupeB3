@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for the Healer class
+ * @author LennyGonzales
  */
 public class HealerTest {
     @Test

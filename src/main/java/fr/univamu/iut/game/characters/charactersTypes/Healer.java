@@ -7,7 +7,7 @@ import fr.univamu.iut.game.characters.attributs.Fly;
 /**
  * Class representing a Healer character.
  * A Healer is a Character with special abilities to heal himself and fly.
- * It perform ranged attack.
+ * It performs ranged attack.
  *
  * @author LennyGonzales
  */
@@ -26,16 +26,16 @@ public class Healer extends Character implements Distance, Fly {
     }
 
     /**
-     * Gets the heal power of the Healer character.
-     * @return the heal power of the Healer character
+     * Gets the heals points of the Healer character.
+     * @return the heals points of the Healer character
      */
     public int getHeal() {
         return heal;
     }
 
     /**
-     * Sets the heal power of the Healer character.
-     * @param heal the heal power of the Healer character
+     * Sets the heals points of the Healer character.
+     * @param heal the heals points of the Healer character
      */
     public void setHeal(int heal) {
         this.heal = heal;
@@ -56,7 +56,7 @@ public class Healer extends Character implements Distance, Fly {
      * Special attack of the Healer character.
      * He heals himself.
      * @param pEnemy the enemy
-     * @return 0 because it done no damage
+     * @return 0 because it does no damage
      */
     @Override
     public int specialAttack(Character pEnemy) {

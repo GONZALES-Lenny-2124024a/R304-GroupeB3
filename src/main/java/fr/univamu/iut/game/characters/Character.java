@@ -119,7 +119,7 @@ public abstract class Character implements Observer<List<Equipment>> {
     }
 
     /**
-     * Get the damage of the character with his equipments
+     * Get the damage points of the character with his equipments
      * @return the damage
      */
     public int getDamageWithEquipments() {
@@ -127,14 +127,14 @@ public abstract class Character implements Observer<List<Equipment>> {
     }
 
     /**
-     * Get the base damage of the character
+     * Get the base damage points of the character
      * @return the base damage
      */
     public int getDamage() { return damage; }
 
     /**
-     * Set the base damage of the character
-     * @param damage the new base damage of the character
+     * Set the base damage points of the character
+     * @param damage the new base damage points of the character
      */
     public void setDamage(int damage) {
         this.damage = damage;

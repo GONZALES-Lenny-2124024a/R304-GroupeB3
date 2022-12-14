@@ -10,8 +10,8 @@ public enum EquipmentName {
     DAEMON(100, 12),
     ANGEL(200, 25);
 
-    private int price;
-    private int points;
+    private final int price;
+    private final int points;
 
     EquipmentName(int price, int points) {
         this.price = price;

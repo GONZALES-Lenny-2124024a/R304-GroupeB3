@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the characters team class
+ * @author LennyGonzales
  */
 public class CharactersTeamTest {
     @Test

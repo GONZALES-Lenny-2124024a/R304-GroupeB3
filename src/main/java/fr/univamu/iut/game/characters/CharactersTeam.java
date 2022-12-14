@@ -52,7 +52,7 @@ public class CharactersTeam<T extends Character> implements Observable {
 
     /**
      * Get the number of gold of the team
-     * @return
+     * @return the number of golds
      */
     public int getGold() {
         return gold;
@@ -60,7 +60,7 @@ public class CharactersTeam<T extends Character> implements Observable {
 
     /**
      * Set the number of gold of the team
-     * @param gold
+     * @param gold the new number of golds
      */
     public void setGold(int gold) {
         this.gold = gold;
@@ -110,7 +110,7 @@ public class CharactersTeam<T extends Character> implements Observable {
 
     /**
      * Delete an equipment
-     * @param equipment the quipment to delete
+     * @param equipment the equipment to delete
      */
     public void delEquipment(Equipment equipment) {
         equipments.remove(equipment);
@@ -141,7 +141,7 @@ public class CharactersTeam<T extends Character> implements Observable {
     }
 
     /**
-     * Set tghe list of characters
+     * Set the list of characters
      * @param characters the new list of characters
      */
     public void setCharacters(List<T> characters) {

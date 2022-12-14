@@ -1,10 +1,13 @@
 package fr.univamu.iut.game.equipments;
 
-import fr.univamu.iut.game.equipments.EquipmentName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for the EquipmentName enumerator
+ * @author LennyGonzales
+ */
 public class EquipmentNameTest {
 
     @Test

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for the Market enumerator
+ * @author LennyGonzales
  */
 public class CharactersEnumTest {
     @Test

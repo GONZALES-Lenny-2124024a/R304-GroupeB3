@@ -1,8 +1,6 @@
 package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
-import fr.univamu.iut.game.characters.Character;
-import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import fr.univamu.iut.game.fight.TeamFight;
@@ -13,29 +11,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the TeamFight class
+ * @author LennyGonzales
  */
 public class TeamFightTest<T extends Character> {
     @Test
     public void shouldGetLegendaryReward() throws EmptyNameForCharactersTeamException {
-        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<T>("LennyTeam"), new CharactersTeam<T>("EnemyTeam"));
+        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.03), TeamFightRewardLevel.LEGENDARY.getReward());
     }
 
     @Test
     public void shouldGetEpicReward() throws EmptyNameForCharactersTeamException {
-        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<T>("LennyTeam"), new CharactersTeam<T>("EnemyTeam"));
+        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.08), TeamFightRewardLevel.EPIC.getReward());
     }
 
     @Test
     public void shouldGetRareReward() throws EmptyNameForCharactersTeamException {
-        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<T>("LennyTeam"), new CharactersTeam<T>("EnemyTeam"));
+        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.3), TeamFightRewardLevel.RARE.getReward());
     }
 
     @Test
     public void shouldGetCommonReward() throws EmptyNameForCharactersTeamException {
-        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<T>("LennyTeam"), new CharactersTeam<T>("EnemyTeam"));
+        TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(1), TeamFightRewardLevel.COMMON.getReward());
     }
 
@@ -104,7 +103,7 @@ public class TeamFightTest<T extends Character> {
     }
 
     @Test
-    public void whouldAttackDontEndFight() throws InterruptedException, EmptyNameForCharactersTeamException {
+    public void shouldAttackDontEndFight() throws InterruptedException, EmptyNameForCharactersTeamException {
         CharactersTeam<T> teamPlayer = new CharactersTeam<>("LennyTeam");
         CharactersTeam<T> teamEnemy = new CharactersTeam<>("Enemy");
 

@@ -34,12 +34,8 @@ public class Market<T extends Character> {
         System.out.println("Characters | Equipments");
         System.out.println("Enter a category :");
         switch (input.nextLine().toLowerCase()) {
-            case "characters":
-                presentationItemsInCategory(CharactersEnum.values());
-                break;
-            case "equipments":
-                presentationItemsInCategory(EquipmentType.values());
-                break;
+            case "characters" -> presentationItemsInCategory(CharactersEnum.values());
+            case "equipments" ->presentationItemsInCategory(EquipmentType.values());
         }
     }
 
@@ -51,7 +47,7 @@ public class Market<T extends Character> {
         if(enumerator[0] instanceof CharactersEnum) {
             presentCharactersEnum();
             System.out.println("Enter the name of the character that you want to buy :");
-            buyCharacter(input.nextLine().toLowerCase());;
+            buyCharacter(input.nextLine().toLowerCase());
         } else if (enumerator[0] instanceof EquipmentType) {
             buyEquipment(presentEquipmentType(), input.nextLine().toLowerCase());
         }

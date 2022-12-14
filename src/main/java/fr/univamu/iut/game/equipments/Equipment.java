@@ -1,7 +1,5 @@
 package fr.univamu.iut.game.equipments;
 
-import fr.univamu.iut.game.equipments.EquipmentType;
-
 /**
  * Class representing an equipment.
  * @author LennyGonzales

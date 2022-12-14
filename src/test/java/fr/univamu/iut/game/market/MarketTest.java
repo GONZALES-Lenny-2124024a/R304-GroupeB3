@@ -6,13 +6,16 @@ import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
 import fr.univamu.iut.game.equipments.EquipmentName;
 import fr.univamu.iut.game.equipments.EquipmentType;
-import fr.univamu.iut.game.market.Market;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for the Market class
+ * @author LennyGonzales
+ */
 public class MarketTest<T extends Character> {
     @Test
     public void shouldReturnTheRightType() throws EmptyNameForCharactersTeamException {

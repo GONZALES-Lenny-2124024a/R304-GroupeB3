@@ -1,12 +1,13 @@
 package fr.univamu.iut.game.equipments;
 
-import fr.univamu.iut.game.equipments.Equipment;
-import fr.univamu.iut.game.equipments.EquipmentName;
-import fr.univamu.iut.game.equipments.EquipmentType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for the Equipment class
+ * @author LennyGonzales
+ */
 public class EquipmentTest {
 
     @Test
