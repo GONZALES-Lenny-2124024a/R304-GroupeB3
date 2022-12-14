@@ -19,7 +19,6 @@ public class Market<T extends Character> {
 
     private CharactersTeam<T> playerTeam;
     private Scanner input;
-    private String inputStr;
     private StringBuilder output;
 
     public Market(CharactersTeam<T> playerTeam, Scanner input) {
@@ -51,9 +50,10 @@ public class Market<T extends Character> {
     public void presentationItemsInCategory(Enum<?>[] enumerator) {
         if(enumerator[0] instanceof CharactersEnum) {
             presentCharactersEnum();
-            buyCharacter();
+            System.out.println("Enter the name of the character that you want to buy :");
+            buyCharacter(input.nextLine().toLowerCase());;
         } else if (enumerator[0] instanceof EquipmentType) {
-            buyEquipment(presentEquipmentType());
+            buyEquipment(presentEquipmentType(), input.nextLine().toLowerCase());
         }
     }
 
@@ -81,17 +81,20 @@ public class Market<T extends Character> {
 
         // Presentation items
         System.out.println("Enter a category :");
-        return presentEquipmentName(input.nextLine().toLowerCase());
+        String equipmentTypeStr = input.nextLine().toLowerCase();
+
+        System.out.println("Enter a equipment name");
+        return presentEquipmentName(equipmentTypeStr);
     }
 
     /**
      * Presents the equipments name for a category of equipment
-     * @param inputStr a category string
+     * @param equipmentTypeStr a category string
      * @return an equipment type
      */
-    public EquipmentType presentEquipmentName(String inputStr) {
+    public EquipmentType presentEquipmentName(String equipmentTypeStr) {
         for(EquipmentType equipmentType : EquipmentType.values()) {
-            if ((equipmentType.toString().toLowerCase()).equals(inputStr)) {    // Get the category type
+            if ((equipmentType.toString().toLowerCase()).equals(equipmentTypeStr)) {    // Get the category type
                 for (EquipmentName equipmentName : EquipmentName.values()) {
                     System.out.println(equipmentName.toString() + " - Price : " + equipmentName.getPrice());
                 }
@@ -106,13 +109,12 @@ public class Market<T extends Character> {
     /**
      * Supports the payment of an equipment
      * @param equipmentType the type of the equipment
+     * @param equipmentNameStr the string of an equipmentName
      */
-    public void buyEquipment(EquipmentType equipmentType) {
-        System.out.println("Enter a equipment name");
-        inputStr = input.nextLine().toLowerCase();
+    public void buyEquipment(EquipmentType equipmentType, String equipmentNameStr) {
         for (EquipmentName equipmentName : EquipmentName.values()) {
-            if ((equipmentName.toString().toLowerCase()).equals(inputStr)) {    // Get the category type
-                if (playerTeam.getGold() > equipmentName.getPrice()) {
+            if ((equipmentName.toString().toLowerCase()).equals(equipmentNameStr)) {    // Get the category type
+                if (playerTeam.getGold() >= equipmentName.getPrice()) {
                     playerTeam.addEquipment(new Equipment(equipmentType, equipmentName));
                     decreasePlayerTeamGolds(equipmentName.getPrice());
                 } else {
@@ -124,16 +126,16 @@ public class Market<T extends Character> {
 
     /**
      * Supports the payment of a character
+     * @param characterStr the string of a type of character
      */
-    public void buyCharacter() {
+    public void buyCharacter(String characterStr) {
         CharacterFactory characterFactory = new CharacterFactory();
-        System.out.println("Enter the name of the character that you want to buy :");
-        inputStr = input.nextLine().toLowerCase();
         for(CharactersEnum charactersEnum : CharactersEnum.values()) {
-            if ((charactersEnum.toString().toLowerCase()).equals(inputStr)) {
-                if (playerTeam.getGold() > charactersEnum.getPrice()) { // Verify if the user have enough golds
+            if ((charactersEnum.toString().toLowerCase()).equals(characterStr)) {
+                if (playerTeam.getGold() >= charactersEnum.getPrice()) { // Verify if the user have enough golds
                     decreasePlayerTeamGolds(charactersEnum.getPrice());
                     playerTeam.addCharacter((T) characterFactory.createCharacter(charactersEnum.toString(), "Player" + (playerTeam.getSize() + 1)));
+                    playerTeam.getSpecificCharacter(playerTeam.getSize() - 1).update(playerTeam.getEquipments());   // Notify the new character, so it can get the equipments
                 } else {
                     System.out.println("You don't have enough gold !");
                 }

@@ -1,8 +1,7 @@
 package fr.univamu.iut.game.characters;
 
-import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
+import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
 import fr.univamu.iut.game.equipments.Equipment;
-import fr.univamu.iut.game.equipments.EquipmentType;
 import fr.univamu.iut.observerPattern.Observable;
 import fr.univamu.iut.observerPattern.Observer;
 
@@ -23,13 +22,13 @@ public class CharactersTeam<T extends Character> implements Observable {
     /**
      * Constructor
      * @param name the name of the team
-     * @throws EmptyNameForPlayerTeamException if the input name is empty, we throw this exception
+     * @throws EmptyNameForCharactersTeamException if the input name is empty, we throw this exception
      */
-    public CharactersTeam(String name) throws EmptyNameForPlayerTeamException {
+    public CharactersTeam(String name) throws EmptyNameForCharactersTeamException {
         if(name.length() > 0) {
             this.name = name;
         } else {
-            throw new EmptyNameForPlayerTeamException();
+            throw new EmptyNameForCharactersTeamException();
         }
         characters = new ArrayList<>();
         equipments = new ArrayList<>();

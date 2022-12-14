@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import fr.univamu.iut.game.characters.charactersTypes.Healer;

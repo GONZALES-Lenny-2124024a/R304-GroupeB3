@@ -1,6 +1,6 @@
 package fr.univamu.iut;
 
-import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
+import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
 import fr.univamu.iut.game.Game;
 
 /**
@@ -8,7 +8,7 @@ import fr.univamu.iut.game.Game;
  * @authgr LennyGonzales
  */
 public class Main {
-    public static void main(String[] args) throws InterruptedException, EmptyNameForPlayerTeamException {
+    public static void main(String[] args) throws InterruptedException, EmptyNameForCharactersTeamException {
         Game game = new Game();
         game.run();
     }

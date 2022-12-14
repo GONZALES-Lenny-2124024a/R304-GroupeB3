@@ -1,11 +1,8 @@
 package fr.univamu.iut.game;
 
-import fr.univamu.iut.exceptions.EmptyNameForPlayerTeamException;
+import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
 import fr.univamu.iut.game.characters.*;
 import fr.univamu.iut.game.characters.Character;
-import fr.univamu.iut.game.characters.charactersTypes.Archer;
-import fr.univamu.iut.game.characters.charactersTypes.Healer;
-import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import fr.univamu.iut.game.characters.factory.CharacterFactory;
 import fr.univamu.iut.game.fight.TeamFight;
 import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
@@ -30,7 +27,7 @@ public class Game<T extends Character> {
     private Market market;
 
 
-    public Game() throws EmptyNameForPlayerTeamException {
+    public Game() throws EmptyNameForCharactersTeamException {
         input = new Scanner(System.in);
         endGame = false;
         rand = new Random();
@@ -47,7 +44,7 @@ public class Game<T extends Character> {
             try {
                 playerTeam = new CharactersTeam<>(input.nextLine());
                 break;  // The player's team name isn't empty
-            } catch (EmptyNameForPlayerTeamException e) {
+            } catch (EmptyNameForCharactersTeamException e) {
                 e.printStackTrace();
             }
         }
@@ -59,10 +56,10 @@ public class Game<T extends Character> {
      * Show the description of each character (name, skills, damage, ...)
      */
     public void showCharactersDescription() {
-        System.out.println("Choose your class from : " + '\n');
         for(CharactersEnum charactersEnum : CharactersEnum.values()) {
             System.out.println(characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
         }
+        System.out.println("Enter a type of character : ");
     }
 
     /**
@@ -129,6 +126,7 @@ public class Game<T extends Character> {
         endGame = false;
         while(!endGame) {
             System.out.println("\nFight | Market | Profile | Quit");  // Presents the game's pages
+            System.out.println("Enter a mode : ");
             switch(input.nextLine().toLowerCase()) {
                 case "fight" -> fightMode();
                 case "market" -> market.marketMode();

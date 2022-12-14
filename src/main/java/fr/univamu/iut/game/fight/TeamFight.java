@@ -60,8 +60,8 @@ public class TeamFight<T extends Character> {
      * @param team characters team
      * @return a random character from a team
      */
-    public T getRandomCharacter(CharactersTeam<T> team) {
-        return team.getCharacters().get((int)(Math.random()*team.getCharacters().size()));
+    public T getRandomCharacter(CharactersTeam<T> team, int randomIndex) {
+        return team.getCharacters().get(randomIndex);
     }
 
     /**
@@ -73,7 +73,7 @@ public class TeamFight<T extends Character> {
      */
     public boolean attack(CharactersTeam<T> attackingTeam, CharactersTeam<T> victimTeam) throws InterruptedException {
         for (T attackingCharacter : attackingTeam.getCharacters()) {
-            T victimCharacter = getRandomCharacter(victimTeam);
+            T victimCharacter = getRandomCharacter(victimTeam, (int)(Math.random()*victimTeam.getCharacters().size()));
             attackingCharacter.attack(victimCharacter, Math.random());
 
             if (victimCharacter.getLife() <= 0) {

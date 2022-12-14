@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.fight;
 
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 import org.junit.jupiter.api.Test;

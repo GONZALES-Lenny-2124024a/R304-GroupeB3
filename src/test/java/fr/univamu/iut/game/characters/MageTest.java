@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import org.junit.jupiter.api.Test;
@@ -66,6 +66,18 @@ public class MageTest {
     }
 
     @Test
+    public void shouldGetDamageWithEquipments() {
+        Mage p = new Mage("Lenny");
+        assertEquals(p.getDamageWithEquipments(), 10);
+    }
+
+    @Test
+    public void shouldGetDefenceWithEquipments() {
+        Mage p = new Mage("Lenny");
+        assertEquals(p.getDefenceWithEquipments(), 7);
+    }
+
+    @Test
     public void shouldGetDefence() {
         Mage p = new Mage("Lenny");
         assertEquals(p.getDefence(), 7);
@@ -82,6 +94,18 @@ public class MageTest {
     public void shouldGetDamageInFight() {
         Mage p = new Mage("Lenny");
         assertEquals(p.getDamageInFight(), 0);
+    }
+
+    @Test
+    public void shouldGetDamageEquipments() {
+        Mage p = new Mage("Lenny");
+        assertEquals(p.getDamageEquipments(), 0);
+    }
+
+    @Test
+    public void shouldGetDefenceEquipments() {
+        Mage p = new Mage("Lenny");
+        assertEquals(p.getDefenceEquipments(), 0);
     }
 
     @Test
@@ -138,5 +162,33 @@ public class MageTest {
         Mage p = new Mage("Lenny");
         p.setDamageInFight(200);
         assertEquals(p.getDamageInFight(), 200);
+    }
+
+    @Test
+    public void shouldSetDamageWithEquipments() {
+        Mage p = new Mage("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageWithEquipments(), 20);
+    }
+
+    @Test
+    public void shouldSetDefenceWithEquipments() {
+        Mage p = new Mage("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceWithEquipments(), 17);
+    }
+
+    @Test
+    public void shouldSetDamageEquipments() {
+        Mage p = new Mage("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageEquipments(), 10);
+    }
+
+    @Test
+    public void shouldSetDefenceEquipments() {
+        Mage p = new Mage("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceEquipments(), 10);
     }
 }

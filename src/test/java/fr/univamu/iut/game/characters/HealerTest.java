@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.game.characters.charactersTypes.Healer;
 import org.junit.jupiter.api.Test;
@@ -85,9 +85,33 @@ public class HealerTest {
     }
 
     @Test
+    public void shouldGetDamageEquipments() {
+        Healer p = new Healer("Lenny");
+        assertEquals(p.getDamageEquipments(), 0);
+    }
+
+    @Test
+    public void shouldGetDefenceEquipments() {
+        Healer p = new Healer("Lenny");
+        assertEquals(p.getDefenceEquipments(), 0);
+    }
+
+    @Test
     public void shouldGetDamageInFight() {
         Healer p = new Healer("Lenny");
         assertEquals(p.getDamageInFight(), 0);
+    }
+
+    @Test
+    public void shouldGetDamageWithEquipments() {
+        Healer p = new Healer("Lenny");
+        assertEquals(p.getDamageWithEquipments(), 8);
+    }
+
+    @Test
+    public void shouldGetDefenceWithEquipments() {
+        Healer p = new Healer("Lenny");
+        assertEquals(p.getDefenceWithEquipments(), 2);
     }
 
     @Test
@@ -151,5 +175,33 @@ public class HealerTest {
         Healer p = new Healer("Lenny");
         p.setDamageInFight(200);
         assertEquals(p.getDamageInFight(), 200);
+    }
+
+    @Test
+    public void shouldSetDamageWithEquipments() {
+        Healer p = new Healer("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageWithEquipments(), 18);
+    }
+
+    @Test
+    public void shouldSetDefenceWithEquipments() {
+        Healer p = new Healer("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceWithEquipments(), 12);
+    }
+
+    @Test
+    public void shouldSetDamageEquipments() {
+        Healer p = new Healer("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageEquipments(), 10);
+    }
+
+    @Test
+    public void shouldSetDefenceEquipments() {
+        Healer p = new Healer("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceEquipments(), 10);
     }
 }

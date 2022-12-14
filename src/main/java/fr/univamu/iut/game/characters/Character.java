@@ -28,6 +28,8 @@ public abstract class Character implements Observer<List<Equipment>> {
         xpNecessary = 10;
         life = 100;
         damageInFight = 0;
+        damageEquipments = 0;
+        defenceEquipments = 0;
     }
 
     /**
@@ -266,8 +268,8 @@ public abstract class Character implements Observer<List<Equipment>> {
 
         for (Equipment equipment : equipments) {
             switch (equipment.getEquipmentType()) {
-                case ARMOR -> damageEquipments += equipment.getEquipmentName().getPoints();
-                case WEAPON -> defenceEquipments += equipment.getEquipmentName().getPoints();
+                case ARMOR -> defenceEquipments += equipment.getEquipmentName().getPoints();
+                case WEAPON -> damageEquipments += equipment.getEquipmentName().getPoints();
             }
         }
     }
@@ -282,8 +284,9 @@ public abstract class Character implements Observer<List<Equipment>> {
                 "level : " + level + '\n' +
                 "xp : " + xp + '/' + xpNecessary + '\n' +
                 "damage : " + getDamage() + '\n' +
-                "damage : " + getDamageEquipments() + '\n' +
+                "equipments damage : " + getDamageEquipments() + '\n' +
                 "defence : " + getDefence() + '\n' +
+                "equipments defence : " + getDefenceEquipments() + '\n' +
                 "life : " + getLife();
     }
 }

@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import org.junit.jupiter.api.Test;
@@ -69,11 +69,34 @@ public class ArcherTest {
     }
 
     @Test
+    public void shouldGetDamageEquipments() {
+        Archer p = new Archer("Lenny");
+        assertEquals(p.getDamageEquipments(), 0);
+    }
+
+    @Test
+    public void shouldGetDefenceEquipments() {
+        Archer p = new Archer("Lenny");
+        assertEquals(p.getDefenceEquipments(), 0);
+    }
+
+    @Test
+    public void shouldGetDamageWithEquipments() {
+        Archer p = new Archer("Lenny");
+        assertEquals(p.getDamageWithEquipments(), 15);
+    }
+
+    @Test
+    public void shouldGetDefenceWithEquipments() {
+        Archer p = new Archer("Lenny");
+        assertEquals(p.getDefenceWithEquipments(), 5);
+    }
+
+    @Test
     public void shouldGetDefence() {
         Archer p = new Archer("Lenny");
         assertEquals(p.getDefence(), 5);
     }
-
 
     @Test
     public void shouldGetLife() {
@@ -141,5 +164,33 @@ public class ArcherTest {
         Archer p = new Archer("Lenny");
         p.setDamageInFight(200);
         assertEquals(p.getDamageInFight(), 200);
+    }
+
+    @Test
+    public void shouldSetDamageWithEquipments() {
+        Archer p = new Archer("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageWithEquipments(), 25);
+    }
+
+    @Test
+    public void shouldSetDefenceWithEquipments() {
+        Archer p = new Archer("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceWithEquipments(), 15);
+    }
+
+    @Test
+    public void shouldSetDamageEquipments() {
+        Archer p = new Archer("Lenny");
+        p.setDamageEquipments(10);
+        assertEquals(p.getDamageEquipments(), 10);
+    }
+
+    @Test
+    public void shouldSetDefenceEquipments() {
+        Archer p = new Archer("Lenny");
+        p.setDefenceEquipments(10);
+        assertEquals(p.getDefenceEquipments(), 10);
     }
 }

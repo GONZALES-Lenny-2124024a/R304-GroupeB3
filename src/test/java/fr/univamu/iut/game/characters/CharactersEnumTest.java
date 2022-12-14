@@ -1,4 +1,4 @@
-package fr.univamu.iut.game;
+package fr.univamu.iut.game.characters;
 
 import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Tests for the Market enumerator
  */
-public class MarketTest {
+public class CharactersEnumTest {
     @Test
     public void shouldGetArcherPrice() {
         assertEquals(CharactersEnum.ARCHER.getPrice(), 200);
