@@ -240,13 +240,13 @@ public abstract class Character implements Observer<List<Equipment>> {
             pEnemy.setLife(enemyDefence - damageAttack);
             System.out.println(getName() + " -> " + pEnemy.getName() + " (" + damageAttack + ") with a Critical Attack");
         } else if (randomValue > 0.15) { // 85% chance of making a critical attack
-            pEnemy.setLife(enemyDefence - getDamage());
+            pEnemy.setLife(enemyDefence - damageAttack);
             System.out.println(getName() + " -> " + pEnemy.getName() + " (" + damageAttack + ')');
         } else { // 10% chance of making a special attack
             damageAttack = specialAttack(pEnemy);
             System.out.println(getName() + " performed his special attack ! (" + damageAttack + ')');
         }
-        setDamageInFight(getDamageInFight() + damage);
+        setDamageInFight(getDamageInFight() + damageAttack);
     }
 
     /**

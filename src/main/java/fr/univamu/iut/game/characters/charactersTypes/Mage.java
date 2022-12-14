@@ -58,8 +58,8 @@ public class Mage extends Character implements Distance, Fly {
      */
     @Override
     public int specialAttack(Character pEnemy) throws InterruptedException {
-        int attackDamage = (pEnemy.getLife() + pEnemy.getDefenceWithEquipments()) - getDamageWithEquipments();
-        pEnemy.setLife(attackDamage);
+        int attackDamage = pEnemy.getDefenceWithEquipments() - getDamageWithEquipments();
+        pEnemy.setLife(pEnemy.getLife() - attackDamage);
 
         for (int i = 0; i < 5; ++i) {   // Make a passive attack for 5 seconds
             System.out.println(getName() + " -> " + pEnemy.getName() + " (1) !");
