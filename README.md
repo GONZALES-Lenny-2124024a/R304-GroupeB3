@@ -2,6 +2,24 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
+# Sommaire
+
+- [Sujet](#sujet)
+- [Étude de conception](#étude-de-conception)
+- [BackLog Produit](#backlog-produit)
+  - [Description](#description)
+  - [Technical Stories](#technical-stories)
+  - [User Stories](#user-stories)
+- [Présentation de l'application](#présentation-de-lapplication)
+- [Synthèse](#synthèse)
+- [Bilan technique](#bilan-technique)
+- [Problèmes rencontrés](#problèmes-rencontrés)
+- [Inventivité](#inventivité)
+- [Généricité](#généricité)
+- [Tests unitaires](#tests-unitaires)
+- [Mesures d'amélioration](#mesures-damélioration)
+- [Lancement de l'application](#lancement-de-lapplication)
+
 ## Sujet
 
 Vous devez écrire la spécification fonctionnelle technique et coder l’implémentation d’une
