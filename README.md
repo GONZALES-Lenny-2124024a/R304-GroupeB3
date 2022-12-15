@@ -85,6 +85,11 @@ En tant qu'utilisateur, je souhaite que le soit sous forme de petite partie afin
 *Valeur métier* : 1
 
 ---
+En tant qu'utilisateur, je souhaite recevoir une notification toutes les 3 minutes pour savoir si je veux arrêter la partie ou non afin de me remettre au travail.
+**Priorité** : 2
+*Valeur métier* : 3
+
+---
 En tant qu'utilisateur, je souhaite choisir un personnage de départ afin de pouvoir commencer la partie.
 **Priorité** : 6
 *Valeur métier* : 1
@@ -178,9 +183,10 @@ Notre applcation est un jeu où l'utilisateur créer sa propre équipe de person
 
 L'utilisateur peut combattre une équipe adverse généré automatiquement par rapport à l'équipe de l'utilisateur.
 Lors d'un combat, l'utilisateur peut perdre un ou plusieurs de ses personnages, mais lorsque l'utilisateur gagne, chaque personnage de son équipe gagne de l'expérience et de l'argent (gold).
-Avec cet argent, il peut acheter d'autres personnages et des équipements augmenteront les statistiques de ses personnages.
+Avec cet argent, il peut acheter d'autres personnages et des équipements qui augmenteront les statistiques de ses personnages.
 
-Pour finir, lorsque l'utilisateur a perdu un combat, la partie est finie puisqu'il ne possède plus aucun personnage.
+Lorsque l'utilisateur a perdu un combat, la partie est finie puisqu'il ne possède plus aucun personnage.
+Pour finir, toutes les 3 minutes, l'utilisateur reçoit une notification pour savoir s'il veut arrêter de jouer ou non.
 
 <img src="./imgReadMe/useCase.png" alt="use case"/>
 
