@@ -224,7 +224,7 @@ Après la fin du développement du jeu, nous avons demandé à notre professeur 
 L'un des problèmes lors du développement de l'application a été de ne pas avoir fait tester celle-ci a des utilisateurs pour récupérer leurs avis et leurs conseils.
 
 ## Lancement de l'application
-
+### IDE
 Pour commencer, télécharger l'application en exécutant la commande :
 ```bash
 git clone https://github.com/LennyGonzales/R304-GroupeB3.git
@@ -233,6 +233,13 @@ git clone https://github.com/LennyGonzales/R304-GroupeB3.git
 Puis à partir d'un IDE, exécuter simplement cette ligne du fichier Main.java
 ```java
     public static void main(String[] args) throws InterruptedException, EmptyNameForCharactersTeamException {
+```
+### JAR
+Pour commencer, télécharger le fichier jar **Ganassi_Alexandre-Gonzales_Lenny-Sauva_Mathieu-1.0-SNAPSHOT-jar-with-dependencies.jar** se trouvant à la racine du projet.
+
+Puis, à partir d'un terminal, allez sur le répertoire où se situe le fichier .jar et executez cette commande :
+```bash
+java -jar Ganassi_Alexandre-Gonzales_Lenny-Sauva_Mathieu-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 ## Membres
