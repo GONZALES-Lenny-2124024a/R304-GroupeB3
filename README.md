@@ -182,6 +182,8 @@ Avec cet argent, il peut acheter d'autres personnages et des équipements augmen
 
 Pour finir, lorsque l'utilisateur a perdu un combat, la partie est finie puisqu'il ne possède plus aucun personnage.
 
+<img src="./imgReadMe/useCase.png" alt="use case"/>
+
 # Synthèse
 
 Ce projet nous a permis de mettre en place la méthode SCRUM, cependant, étant donné la durée du projet, nous n'avons pas pu mettre en place, nous n'avons pu faire qu'un seul sprint.
