@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
 import fr.univamu.iut.game.equipments.Equipment;
 import fr.univamu.iut.observerPattern.Observer;
 
@@ -230,8 +231,13 @@ public abstract class Character implements Observer<List<Equipment>> {
      * This character attack another character
      * @param pEnemy enemy character
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public void attack(Character pEnemy, double randomValue) throws InterruptedException {
+    public void attack(Character pEnemy, double randomValue) throws InterruptedException, RandomValueNotBetween0And1Exception {
+        if ((randomValue < 0) || (randomValue > 1)) {
+            throw new RandomValueNotBetween0And1Exception();
+        }
+
         int damageAttack = getDamageWithEquipments();
         int enemyDefence = pEnemy.getLife() + pEnemy.getDefenceWithEquipments();
 

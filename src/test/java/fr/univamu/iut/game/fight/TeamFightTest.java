@@ -1,9 +1,11 @@
-package fr.univamu.iut.game.characters;
+package fr.univamu.iut.game.fight;
 
 import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
+import fr.univamu.iut.game.characters.Character;
+import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import fr.univamu.iut.game.characters.charactersTypes.Mage;
-import fr.univamu.iut.game.fight.TeamFight;
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
 import org.junit.jupiter.api.Test;
 
@@ -15,31 +17,31 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TeamFightTest<T extends Character> {
     @Test
-    public void shouldGetLegendaryReward() throws EmptyNameForCharactersTeamException {
+    public void shouldGetLegendaryReward() throws EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.03), TeamFightRewardLevel.LEGENDARY.getReward());
     }
 
     @Test
-    public void shouldGetEpicReward() throws EmptyNameForCharactersTeamException {
+    public void shouldGetEpicReward() throws EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.08), TeamFightRewardLevel.EPIC.getReward());
     }
 
     @Test
-    public void shouldGetRareReward() throws EmptyNameForCharactersTeamException {
+    public void shouldGetRareReward() throws EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.3), TeamFightRewardLevel.RARE.getReward());
     }
 
     @Test
-    public void shouldGetCommonReward() throws EmptyNameForCharactersTeamException {
+    public void shouldGetCommonReward() throws EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(1), TeamFightRewardLevel.COMMON.getReward());
     }
 
     @Test
-    public void shouldWin() throws InterruptedException, EmptyNameForCharactersTeamException {
+    public void shouldWin() throws InterruptedException, EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         //Creation of the enemy team
         T mageEnemy = (T) new Mage("Enemy");
         CharactersTeam<T> teamEnemy = new CharactersTeam<>("EnemyTeam");
@@ -56,7 +58,7 @@ public class TeamFightTest<T extends Character> {
     }
 
     @Test
-    public void shouldDefeat() throws InterruptedException, EmptyNameForCharactersTeamException {
+    public void shouldDefeat() throws InterruptedException, EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         //Creation of the player team
         T magePlayer = (T) new Mage("Player");
         CharactersTeam<T> teamPlayer = new CharactersTeam<>("LennyTeam");
@@ -88,7 +90,7 @@ public class TeamFightTest<T extends Character> {
 
 
     @Test
-    public void shouldAttackEndFight() throws InterruptedException, EmptyNameForCharactersTeamException {
+    public void shouldAttackEndFight() throws InterruptedException, EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         CharactersTeam<T> teamPlayer = new CharactersTeam<>("LennyTeam");
         CharactersTeam<T> teamEnemy = new CharactersTeam<>("Enemy");
 
@@ -103,7 +105,7 @@ public class TeamFightTest<T extends Character> {
     }
 
     @Test
-    public void shouldAttackDontEndFight() throws InterruptedException, EmptyNameForCharactersTeamException {
+    public void shouldAttackDontEndFight() throws InterruptedException, EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         CharactersTeam<T> teamPlayer = new CharactersTeam<>("LennyTeam");
         CharactersTeam<T> teamEnemy = new CharactersTeam<>("Enemy");
 

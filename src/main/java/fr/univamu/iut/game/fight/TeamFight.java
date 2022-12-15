@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.fight;
 
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
 import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.characters.CharactersTeam;
 import fr.univamu.iut.game.reward.TeamFightRewardLevel;
@@ -26,8 +27,13 @@ public class TeamFight<T extends Character> {
      * Get the level of the reward
      * @param randValue an int between 0 (inclusive) and 1 (inclusive)
      * @return the reward level
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public int getRewardLevel(double randValue) {
+    public int getRewardLevel(double randValue) throws RandomValueNotBetween0And1Exception {
+        if((randValue < 0) || (randValue > 1)) {
+            throw new RandomValueNotBetween0And1Exception();
+        }
+
         if (randValue <= 0.03) { // 3% chance to have a legendary reward
             return TeamFightRewardLevel.LEGENDARY.getReward();
         } else if (randValue <= 0.08) { // 5% chance to have an epic reward
@@ -41,8 +47,9 @@ public class TeamFight<T extends Character> {
 
     /**
      * Give a reward to the player (gold, xp)
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public void giveReward() {
+    public void giveReward() throws RandomValueNotBetween0And1Exception {
         int rewardLevel = getRewardLevel(Math.random());
 
         Iterator<T> it = playerTeam.getCharacters().iterator();
@@ -70,8 +77,9 @@ public class TeamFight<T extends Character> {
      * @param victimTeam (characters team which attack)
      * @return if the fight is over or not
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public boolean attack(CharactersTeam<T> attackingTeam, CharactersTeam<T> victimTeam) throws InterruptedException {
+    public boolean attack(CharactersTeam<T> attackingTeam, CharactersTeam<T> victimTeam) throws InterruptedException, RandomValueNotBetween0And1Exception {
         for (T attackingCharacter : attackingTeam.getCharacters()) {
             T victimCharacter = getRandomCharacter(victimTeam, (int)(Math.random()*victimTeam.getCharacters().size()));
             attackingCharacter.attack(victimCharacter, Math.random());
@@ -120,8 +128,9 @@ public class TeamFight<T extends Character> {
      * Supports the fight between two teams
      * @return if the user won or not
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public String run() throws InterruptedException {
+    public String run() throws InterruptedException, RandomValueNotBetween0And1Exception {
         while (true) {
             // Player team attack
             if(attack(playerTeam,enemyTeam)) {

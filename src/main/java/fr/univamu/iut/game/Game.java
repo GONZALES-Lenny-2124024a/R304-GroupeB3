@@ -2,6 +2,7 @@ package fr.univamu.iut.game;
 
 import fr.univamu.iut.exceptions.CharacterTypeNotFoundException;
 import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
 import fr.univamu.iut.game.characters.*;
 import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.characters.factory.CharacterFactory;
@@ -110,8 +111,9 @@ public class Game<T extends Character> {
      * Supports the fight between player team and enemy team
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public void fightMode() throws InterruptedException, CharacterTypeNotFoundException {
+    public void fightMode() throws InterruptedException, CharacterTypeNotFoundException, RandomValueNotBetween0And1Exception {
         creationEnemyTeam();
         System.out.println("\n----------- Stage " + stageFight + " -----------");
         if(fight == null) { // Allows to user only one instance of teamFight
@@ -153,8 +155,9 @@ public class Game<T extends Character> {
      * Send the game menu to the user and ask him to choose a mode
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public void gameMenu() throws InterruptedException, CharacterTypeNotFoundException {
+    public void gameMenu() throws InterruptedException, CharacterTypeNotFoundException, RandomValueNotBetween0And1Exception {
         endGame = false;
 
         while(!endGame) {
@@ -190,8 +193,9 @@ public class Game<T extends Character> {
      * Runs the game
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
+     * @throws RandomValueNotBetween0And1Exception Throw this exception when the random value isn't between 0 and 1
      */
-    public void run() throws InterruptedException, CharacterTypeNotFoundException {
+    public void run() throws InterruptedException, CharacterTypeNotFoundException, RandomValueNotBetween0And1Exception {
         introduction();
         startEndGameTimerThread();
         gameMenu();

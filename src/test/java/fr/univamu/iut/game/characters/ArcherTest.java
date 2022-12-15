@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class ArcherTest {
 
 
     @Test
-    public void shouldCriticalAttack() throws InterruptedException {
+    public void shouldCriticalAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Archer cPlayer = new Archer("Lenny");
         Archer ePlayer = new Archer("Enemy");
 
@@ -22,7 +23,7 @@ public class ArcherTest {
     }
 
     @Test
-    public void shouldSpecialAttack() throws InterruptedException {
+    public void shouldSpecialAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Archer cPlayer = new Archer("Lenny");
         Archer ePlayer = new Archer("Enemy");
 
@@ -31,7 +32,7 @@ public class ArcherTest {
     }
 
     @Test
-    public void shouldBasicAttack() throws InterruptedException {
+    public void shouldBasicAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Archer cPlayer = new Archer("Lenny");
         Archer ePlayer = new Archer("Enemy");
 

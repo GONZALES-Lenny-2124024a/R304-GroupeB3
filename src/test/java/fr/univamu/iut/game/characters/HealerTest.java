@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.exceptions.RandomValueNotBetween0And1Exception;
 import fr.univamu.iut.game.characters.charactersTypes.Healer;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class HealerTest {
     @Test
-    public void shouldCriticalAttack() throws InterruptedException {
+    public void shouldCriticalAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Healer cPlayer = new Healer("Lenny");
         Healer ePlayer = new Healer("Enemy");
 
@@ -20,7 +21,7 @@ public class HealerTest {
     }
 
     @Test
-    public void shouldSpecialAttack() throws InterruptedException {
+    public void shouldSpecialAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Healer cPlayer = new Healer("Lenny");
         Healer ePlayer = new Healer("Enemy");
 
@@ -29,7 +30,7 @@ public class HealerTest {
     }
 
     @Test
-    public void shouldBasicAttack() throws InterruptedException {
+    public void shouldBasicAttack() throws InterruptedException, RandomValueNotBetween0And1Exception {
         Healer cPlayer = new Healer("Lenny");
         Healer ePlayer = new Healer("Enemy");
 
