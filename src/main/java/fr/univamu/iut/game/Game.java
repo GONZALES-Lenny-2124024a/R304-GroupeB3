@@ -98,10 +98,10 @@ public class Game<T extends Character> {
             player = playerTeam.getSpecificCharacter(nbPlayer); // Get a player in the player team
 
             // Coefficient between 0.3 and 1.15 for the attributes (Damage and Defense)
-            enemy.setDamage((int) (player.getDamage() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
-            enemy.setDamageEquipments((int) (player.getDamageEquipments() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
-            enemy.setDefence((int) (player.getDefence() * rand.nextDouble() * (1.15 - 0.3) + 0.3));
-            enemy.setDefenceEquipments((int) (player.getDefenceEquipments() * (rand.nextDouble() * (1.15 - 0.3) + 0.3)));
+            enemy.setDamage((int) (player.getDamage() * (rand.nextDouble() * (1.5 - 0.3) + 0.3)));
+            enemy.setDamageEquipments((int) (player.getDamageEquipments() * (rand.nextDouble() * (1.5 - 0.3) + 0.3)));
+            enemy.setDefence((int) (player.getDefence() * rand.nextDouble() * (1.5 - 0.3) + 0.3));
+            enemy.setDefenceEquipments((int) (player.getDefenceEquipments() * (rand.nextDouble() * (1.5 - 0.3) + 0.3)));
 
             enemyTeam.addCharacter((T) enemy);
         }
