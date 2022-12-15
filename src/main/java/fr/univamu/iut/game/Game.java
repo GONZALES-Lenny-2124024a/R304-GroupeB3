@@ -1,5 +1,6 @@
 package fr.univamu.iut.game;
 
+import fr.univamu.iut.exceptions.CharacterTypeNotFoundException;
 import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
 import fr.univamu.iut.game.characters.*;
 import fr.univamu.iut.game.characters.Character;
@@ -61,8 +62,9 @@ public class Game<T extends Character> {
 
     /**
      * Show the description of each character (name, skills, damage, ...)
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void showCharactersDescription() {
+    public void showCharactersDescription() throws CharacterTypeNotFoundException {
         for(CharactersEnum charactersEnum : CharactersEnum.values()) {
             System.out.println(characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
         }
@@ -71,20 +73,18 @@ public class Game<T extends Character> {
 
     /**
      * Allows the user to choose his first character
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void chooseFirstCharacter() {
+    public void chooseFirstCharacter() throws CharacterTypeNotFoundException {
         String inputCharacter = input.nextLine().toLowerCase();
-        for(CharactersEnum charactersEnum : CharactersEnum.values()) {
-            if((charactersEnum.toString().toLowerCase()).equals(inputCharacter)) {
-                playerTeam.addCharacter((T) characterFactory.createCharacter(charactersEnum.toString(), "Player1"));
-            }
-        }
+        playerTeam.addCharacter((T) characterFactory.createCharacter(inputCharacter, "Player1"));
     }
 
     /**
      * Create the enemy team for the fight
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void creationEnemyTeam() {
+    public void creationEnemyTeam() throws CharacterTypeNotFoundException {
         Character enemy = null;
         Character player;
         String name;
@@ -109,8 +109,9 @@ public class Game<T extends Character> {
     /**
      * Supports the fight between player team and enemy team
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void fightMode() throws InterruptedException {
+    public void fightMode() throws InterruptedException, CharacterTypeNotFoundException {
         creationEnemyTeam();
         System.out.println("\n----------- Stage " + stageFight + " -----------");
         if(fight == null) { // Allows to user only one instance of teamFight
@@ -124,8 +125,9 @@ public class Game<T extends Character> {
 
     /**
      * Creation of the player team with his first character
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void introduction() {
+    public void introduction() throws CharacterTypeNotFoundException {
         teamCreation();
         showCharactersDescription();
         chooseFirstCharacter();
@@ -150,8 +152,9 @@ public class Game<T extends Character> {
     /**
      * Send the game menu to the user and ask him to choose a mode
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void gameMenu() throws InterruptedException {
+    public void gameMenu() throws InterruptedException, CharacterTypeNotFoundException {
         endGame = false;
 
         while(!endGame) {
@@ -186,8 +189,9 @@ public class Game<T extends Character> {
     /**
      * Runs the game
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void run() throws InterruptedException {
+    public void run() throws InterruptedException, CharacterTypeNotFoundException {
         introduction();
         startEndGameTimerThread();
         gameMenu();

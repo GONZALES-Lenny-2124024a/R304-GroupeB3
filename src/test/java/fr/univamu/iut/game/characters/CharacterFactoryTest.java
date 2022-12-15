@@ -1,13 +1,13 @@
 package fr.univamu.iut.game.characters;
 
+import fr.univamu.iut.exceptions.CharacterTypeNotFoundException;
 import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import fr.univamu.iut.game.characters.charactersTypes.Healer;
 import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import fr.univamu.iut.game.characters.factory.CharacterFactory;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the CharacterFactory class
@@ -15,19 +15,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CharacterFactoryTest {
     @Test
-    public void shouldReturnArcher() {
+    public void shouldReturnArcher() throws CharacterTypeNotFoundException  {
         CharacterFactory characterFactory = new CharacterFactory();
         assertTrue(characterFactory.createCharacter("archer", "Lenny") instanceof Archer);
     }
 
     @Test
-    public void shouldReturnHealer() {
+    public void shouldReturnHealer() throws CharacterTypeNotFoundException {
         CharacterFactory characterFactory = new CharacterFactory();
         assertTrue(characterFactory.createCharacter("healer", "Lenny") instanceof Healer);
     }
 
     @Test
-    public void shouldReturnMage() {
+    public void shouldReturnMage() throws CharacterTypeNotFoundException {
         CharacterFactory characterFactory = new CharacterFactory();
         assertTrue(characterFactory.createCharacter("mage", "Lenny") instanceof Mage);
     }
@@ -35,6 +35,6 @@ public class CharacterFactoryTest {
     @Test
     public void shouldReturnNull() {
         CharacterFactory characterFactory = new CharacterFactory();
-        assertEquals(characterFactory.createCharacter("UnknowType", "Lenny"), null);
+        assertThrows(CharacterTypeNotFoundException.class, () -> characterFactory.createCharacter("UnknownType", "Lenny"));
     }
 }

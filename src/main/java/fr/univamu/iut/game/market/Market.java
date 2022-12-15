@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.market;
 
+import fr.univamu.iut.exceptions.CharacterTypeNotFoundException;
 import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
 import fr.univamu.iut.game.characters.factory.CharacterFactory;
@@ -29,8 +30,9 @@ public class Market<T extends Character> {
 
     /**
      * Ask the user what category of products he wants to buy
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void marketMode() {
+    public void marketMode() throws CharacterTypeNotFoundException {
         System.out.println("Characters | Equipments");
         System.out.println("Enter a category :");
         switch (input.nextLine().toLowerCase()) {
@@ -42,8 +44,9 @@ public class Market<T extends Character> {
     /**
      * Presents a category's items
      * @param enumerator a list of enumerator value associated to a type of category
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void presentationItemsInCategory(Enum<?>[] enumerator) {
+    public void presentationItemsInCategory(Enum<?>[] enumerator) throws CharacterTypeNotFoundException {
         if(enumerator[0] instanceof CharactersEnum) {
             presentCharactersEnum();
             System.out.println("Enter the name of the character that you want to buy :");
@@ -123,8 +126,9 @@ public class Market<T extends Character> {
     /**
      * Supports the payment of a character
      * @param characterStr the string of a type of character
+     * @throws CharacterTypeNotFoundException when the character type entered doesn't exist
      */
-    public void buyCharacter(String characterStr) {
+    public void buyCharacter(String characterStr) throws CharacterTypeNotFoundException {
         CharacterFactory characterFactory = new CharacterFactory();
         for(CharactersEnum charactersEnum : CharactersEnum.values()) {
             if ((charactersEnum.toString().toLowerCase()).equals(characterStr)) {

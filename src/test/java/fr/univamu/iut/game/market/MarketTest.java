@@ -1,5 +1,6 @@
 package fr.univamu.iut.game.market;
 
+import fr.univamu.iut.exceptions.CharacterTypeNotFoundException;
 import fr.univamu.iut.exceptions.EmptyNameForCharactersTeamException;
 import fr.univamu.iut.game.characters.Character;
 import fr.univamu.iut.game.characters.CharactersTeam;
@@ -32,7 +33,7 @@ public class MarketTest<T extends Character> {
     }
 
     @Test
-    public void shouldBuyCharacterWithEnoughGold() throws EmptyNameForCharactersTeamException {
+    public void shouldBuyCharacterWithEnoughGold() throws EmptyNameForCharactersTeamException, CharacterTypeNotFoundException {
         CharactersTeam<T> charactersTeam = new CharactersTeam<>("LennyTeam");
         charactersTeam.setGold(CharactersEnum.ARCHER.getPrice());
         Market<T> market = new Market<>(charactersTeam, new Scanner(System.in));
@@ -43,7 +44,7 @@ public class MarketTest<T extends Character> {
     }
 
     @Test
-    public void shouldBuyCharacterWithoutEnoughGold() throws EmptyNameForCharactersTeamException {
+    public void shouldBuyCharacterWithoutEnoughGold() throws EmptyNameForCharactersTeamException, CharacterTypeNotFoundException {
         CharactersTeam<T> charactersTeam = new CharactersTeam<>("LennyTeam");
         Market<T> market = new Market<>(charactersTeam, new Scanner(System.in));
         market.buyCharacter("archer");
@@ -75,7 +76,7 @@ public class MarketTest<T extends Character> {
     }
 
     @Test
-    public void shouldBuyEquipmentWithoutEnoughGold() throws EmptyNameForCharactersTeamException {
+    public void shouldBuyEquipmentWithoutEnoughGold() throws EmptyNameForCharactersTeamException, CharacterTypeNotFoundException {
         CharactersTeam<T> charactersTeam = new CharactersTeam<>("LennyTeam");
         Market<T> market = new Market<>(charactersTeam, new Scanner(System.in));
         market.buyCharacter("archer");
