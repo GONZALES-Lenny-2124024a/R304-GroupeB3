@@ -7,6 +7,7 @@ import fr.univamu.iut.game.characters.factory.CharacterFactory;
 import fr.univamu.iut.game.fight.TeamFight;
 import fr.univamu.iut.game.characters.charactersTypes.CharactersEnum;
 import fr.univamu.iut.game.market.Market;
+import fr.univamu.iut.game.timer.EndGameTimerThread;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -23,10 +24,13 @@ public class Game<T extends Character> {
     private CharactersTeam<T> playerTeam;
     private boolean endGame;
     private Random rand;
-    private CharacterFactory characterFactory;
-    private Market market;
+    private CharacterFactory<T> characterFactory;
+    private Market<T> market;
     private int stageFight;
-    private TeamFight fight;
+    private TeamFight<T> fight;
+    private Thread endGameTimerThread;
+    private boolean endTimer;
+    private final int END_TIME_SECONDS = 180;
 
 
     public Game() throws EmptyNameForCharactersTeamException {
@@ -34,8 +38,9 @@ public class Game<T extends Character> {
         endGame = false;
         rand = new Random();
         enemyTeam = new CharactersTeam<>("EnemyTeam");
-        characterFactory = new CharacterFactory();
+        characterFactory = new CharacterFactory<>();
         stageFight = 1;
+        endTimer = false;
     }
 
     /**
@@ -51,7 +56,7 @@ public class Game<T extends Character> {
                 e.printStackTrace();
             }
         }
-        market = new Market(playerTeam, input);
+        market = new Market<>(playerTeam, input);
     }
 
     /**
@@ -109,7 +114,7 @@ public class Game<T extends Character> {
         creationEnemyTeam();
         System.out.println("\n----------- Stage " + stageFight + " -----------");
         if(fight == null) { // Allows to user only one instance of teamFight
-            fight = new TeamFight(playerTeam, enemyTeam);
+            fight = new TeamFight<>(playerTeam, enemyTeam);
         }
         if (fight.run().equals("defeat")) { // If the player loses, the game stops
             endGame = true;
@@ -127,21 +132,55 @@ public class Game<T extends Character> {
     }
 
     /**
+     * Verify if the timer is over
+     * @return true - if the timer is over | else, false
+     */
+    public boolean verifyEndGameTimer() {
+        if (endTimer){
+            System.out.println("More than " + END_TIME_SECONDS + " seconds have passed ! Do you want to keep playing? Yes | No");
+            if(input.nextLine().equalsIgnoreCase("no")) {
+                return true;
+            }
+            startThread();
+            endTimer = false;
+        }
+        return false;
+    }
+
+    /**
      * Send the game menu to the user and ask him to choose a mode
      * @throws InterruptedException it's for Thread.sleep(250) in the mage special attack's method
      */
     public void gameMenu() throws InterruptedException {
         endGame = false;
+
         while(!endGame) {
-            System.out.println("\nFight | Market | Profile | Quit");  // Presents the game's pages
+            if(verifyEndGameTimer()) { break; }
+            System.out.println("\nFight (1) | Market (2) | Profile (3) | Quit (4)");  // Presents the game's pages
             System.out.println("Enter a mode : ");
             switch(input.nextLine().toLowerCase()) {
-                case "fight" -> fightMode();
-                case "market" -> market.marketMode();
-                case "profile" -> System.out.println(playerTeam);    // Show the player team
-                case "quit" -> endGame = true;
+                case "fight", "1" -> fightMode();
+                case "market", "2" -> market.marketMode();
+                case "profile", "3" -> System.out.println(playerTeam);    // Show the player team
+                case "quit", "4" -> endGame = true;
             }
         }
+    }
+
+    /**
+     * Set the timer status
+     * @param endTimer true if the timer is over | else, false
+     */
+    public void setEndTimer(boolean endTimer) {
+        this.endTimer = endTimer;
+    }
+
+    /**
+     * Start the timer thread
+     */
+    public void startThread() {
+        endGameTimerThread = new Thread(new EndGameTimerThread(this, END_TIME_SECONDS));  // Start the Timer
+        endGameTimerThread.start();
     }
 
     /**
@@ -150,6 +189,7 @@ public class Game<T extends Character> {
      */
     public void run() throws InterruptedException {
         introduction();
+        startThread();
         gameMenu();
     }
 }
