@@ -22,7 +22,7 @@ public class CharacterFactory<T extends Character> {
         switch (characterType.toLowerCase()) {
             case "archer" -> character = (T) new Archer(nameCharacter);
             case "healer" -> character =  (T) new Healer(nameCharacter);
-            case "mage" -> character =  (T) new Mage(nameCharacter);
+            default -> character =  (T) new Mage(nameCharacter);
         }
         return character;
     }

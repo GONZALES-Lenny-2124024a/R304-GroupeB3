@@ -141,7 +141,7 @@ public class Game<T extends Character> {
             if(input.nextLine().equalsIgnoreCase("no")) {
                 return true;
             }
-            startThread();
+            startEndGameTimerThread();
             endTimer = false;
         }
         return false;
@@ -178,7 +178,7 @@ public class Game<T extends Character> {
     /**
      * Start the timer thread
      */
-    public void startThread() {
+    public void startEndGameTimerThread() {
         endGameTimerThread = new Thread(new EndGameTimerThread(this, END_TIME_SECONDS));  // Start the Timer
         endGameTimerThread.start();
     }
@@ -189,7 +189,7 @@ public class Game<T extends Character> {
      */
     public void run() throws InterruptedException {
         introduction();
-        startThread();
+        startEndGameTimerThread();
         gameMenu();
     }
 }
