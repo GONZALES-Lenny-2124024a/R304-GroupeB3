@@ -195,5 +195,6 @@ public class Game<T extends Character> {
         introduction();
         startEndGameTimerThread();
         gameMenu();
+        endGameTimerThread.stop();
     }
 }
