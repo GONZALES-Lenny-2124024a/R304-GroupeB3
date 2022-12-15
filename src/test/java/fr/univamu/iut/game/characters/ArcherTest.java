@@ -5,6 +5,7 @@ import fr.univamu.iut.game.characters.charactersTypes.Archer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests for the Archer class
@@ -194,5 +195,13 @@ public class ArcherTest {
         Archer p = new Archer("Lenny");
         p.setDefenceEquipments(10);
         assertEquals(p.getDefenceEquipments(), 10);
+    }
+
+    @Test
+    public void shouldThrowRandomValueNotBetween0And1Exception() {
+        Archer archerPlayer = new Archer("Lenny");
+        Archer archerEnemy = new Archer("Enemy");
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> archerPlayer.attack(archerEnemy, -1));
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> archerPlayer.attack(archerEnemy, 2));
     }
 }

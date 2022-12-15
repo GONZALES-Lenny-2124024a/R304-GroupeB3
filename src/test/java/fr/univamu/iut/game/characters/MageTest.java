@@ -5,6 +5,7 @@ import fr.univamu.iut.game.characters.charactersTypes.Mage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests for the Mage class
@@ -192,5 +193,13 @@ public class MageTest {
         Mage p = new Mage("Lenny");
         p.setDefenceEquipments(10);
         assertEquals(p.getDefenceEquipments(), 10);
+    }
+
+    @Test
+    public void shouldThrowRandomValueNotBetween0And1Exception() {
+        Mage magePlayer = new Mage("Lenny");
+        Mage mageEnemy = new Mage("Enemy");
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> magePlayer.attack(mageEnemy, -1));
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> magePlayer.attack(mageEnemy, 2));
     }
 }

@@ -5,6 +5,7 @@ import fr.univamu.iut.game.characters.charactersTypes.Healer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests for the Healer class
@@ -205,5 +206,13 @@ public class HealerTest {
         Healer p = new Healer("Lenny");
         p.setDefenceEquipments(10);
         assertEquals(p.getDefenceEquipments(), 10);
+    }
+
+    @Test
+    public void shouldThrowRandomValueNotBetween0And1Exception() {
+        Healer healerPlayer = new Healer("Lenny");
+        Healer healerEnemy = new Healer("Enemy");
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> healerPlayer.attack(healerEnemy, -1));
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> healerPlayer.attack(healerEnemy, 2));
     }
 }

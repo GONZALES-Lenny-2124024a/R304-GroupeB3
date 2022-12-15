@@ -17,6 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TeamFightTest<T extends Character> {
     @Test
+    public void shouldThrowRandomValueNotBetween0And1Exception() throws EmptyNameForCharactersTeamException {
+        TeamFight teamFight = new TeamFight(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> teamFight.getRewardLevel(-1));
+        assertThrows(RandomValueNotBetween0And1Exception.class, () -> teamFight.getRewardLevel(2));
+    }
+    @Test
     public void shouldGetLegendaryReward() throws EmptyNameForCharactersTeamException, RandomValueNotBetween0And1Exception {
         TeamFight<T> fight = new TeamFight<>(new CharactersTeam<>("LennyTeam"), new CharactersTeam<>("EnemyTeam"));
         assertEquals(fight.getRewardLevel(0.03), TeamFightRewardLevel.LEGENDARY.getReward());
